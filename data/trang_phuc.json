@@ -2,7 +2,35 @@
     "ao_dai_tan_thoi": {
         "nhom": "Đại chúng & Dân tộc học cận - hiện đại",
         "ten": "Áo dài tân thời",
-        "gioi_tinh": "Dành cho nữ",
+        "file_prefix": "ao_dai_tan_thoi",
+        "gioi_tinh": ["Nữ"],
+        "mau_sac_nam": [],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Xanh Lơ Bột (Duck-Egg Blue)",
+                "file_mau": "xanh"
+            },
+            {
+                "hien_thi": "Hồng Phấn Khói (Dusty Blush)",
+                "file_mau": "hong"
+            },
+            {
+                "hien_thi": "Vàng Bơ Cổ Điển (Buttercream)",
+                "file_mau": "vang"
+            },
+            {
+                "hien_thi": "Xanh Sage Nhạt (Pale Sage)",
+                "file_mau": "xanh_com_nhat"
+            },
+            {
+                "hien_thi": "Tím Hoa Cà Pastel (Soft Mauve)",
+                "file_mau": "tim"
+            },
+            {
+                "hien_thi": "Trắng Ngọc Trai (Pearl Ivory)",
+                "file_mau": "trang"
+            }
+        ],
         "nguon_goc": "Dưới ảnh hưởng của văn hóa phương Tây, họa sĩ Lemur (Cát Tường) đã sáng tạo ra Áo dài cách tân bằng việc đổi mới kiểu dáng (cổ, tay áo) và sử dụng các chất liệu ngoại nhập (voan, ren, nhung, ngọc trai).\n\nNguồn: báo Phụ nữ Việt Nam",
         "y_nghia": "Ông Cát Tường cho rằng phần chính và cốt yếu trong bộ y phục: “Nó là cái quần...” cần được “thay đổi lối cắt kiểu may”: “Từ cạp đến đầu gối nên thu hẹp bớt để vừa khít với thân hình, như thế những vẻ đẹp thiên nhiên của từng người mới lộ ra được. Còn từ đầu gối trở xuống đến chân, hai ống quần lại phải may rộng dần ra để khi đi đứng cái dáng điệu của các bạn được tăng thêm vẻ nhẹ nhàng”.\n\nNguồn: báo Phụ nữ Việt Nam",
         "dac_diem": "Áo dài Lơ Muya (Lemur) trải qua hai giai đoạn thiết kế:\n- Kiểu ban đầu (mang đậm phong cách châu Âu): Vai bồng, tay măng sét hoặc tay chun. Cổ áo khoét sâu viền đăng ten, hoặc cổ lá sen. Gấu áo cắt lượn sóng, đắp vải khác màu hoặc đính ren.\n- Cải tiến năm 1939: Cổ áo đứng cao 1–2cm; tay thẳng may liền, cổ tay hẹp. Xuất hiện kiểu \"áo lé nẹp\".\n\nNguồn: sách Trang phục truyền thống của các dân tộc Việt Nam",
@@ -14,7 +42,64 @@
     "ao_ngu_than_tay_chen": {
         "nhom": "Đại chúng & Dân tộc học cận - hiện đại",
         "ten": "Áo ngũ thân tay chẽn",
-        "gioi_tinh": "Dành cho cả nam và nữ",
+        "file_prefix": "ao_ngu_than_tay_chen",        
+        "gioi_tinh": ["Nam", "Nữ"],
+        "mau_sac_nam": [
+            {
+                "hien_thi": "Lam Khói Nhạt (Slate Blue / Muted Cyan)",
+                "file_mau": "xanh"
+            },
+            {
+                "hien_thi": "Xám Tro Sáng (Silver Ash)",
+                "file_mau": "xam"
+            },
+            {
+                "hien_thi": "Xanh Cổ Vịt Trầm (Teal Heritage)",
+                "file_mau": "xanh_co_vit"
+            },
+            {
+                "hien_thi": "Nâu Trầm Hạt Dẻ (Chestnut Brown)",
+                "file_mau": "nau"
+            },
+            {
+                "hien_thi": "Đen Mực Khói (Ink Black / Charcoal)",
+                "file_mau": "den"
+            },
+            {
+                "hien_thi": "Rêu Rừng Đậm (Deep Forest / Olive)",
+                "file_mau": "reu"
+            },
+            {
+                "hien_thi": "Trắng Ngọc Trai (Pearl Ivory)",
+                "file_mau": "trang"
+            }
+        ],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Hồng Phấn Cánh Sen (Blush Peach)",
+                "file_mau": "hong"
+            },
+            {
+                "hien_thi": "Vàng Mỡ Gà Nhạt (Pale Chiffon)",
+                "file_mau": "vang"
+            },
+            {
+                "hien_thi": "Xanh Lam Cổ (Classic Indigo)",
+                "file_mau": "xanh"
+            },
+            {
+                "hien_thi": "Đỏ Đun / Trầm Hương (Deep Madder / Maroon)",
+                "file_mau": "do"
+            },
+            {
+                "hien_thi": "Tím Than Khói (Smoky Plum)",
+                "file_mau": "tim"
+            },
+            {
+                "hien_thi": "Xanh Ô Liu Sâu (Deep Olive Moss)",
+                "file_mau": "reu"
+            }
+        ],
         "nguon_goc": "Áo ngũ thân (hay áo năm thân) là trang phục truyền thống của Việt Nam với hơn 300 năm lịch sử, ra đời từ quá trình Nam tiến. Loại áo này được Chúa Nguyễn Phúc Khoát định chế làm thường phục cho nhân dân Đàng Trong (năm 1744), sau đó được Hoàng đế Minh Mạng quy định làm trang phục chung cho cả nước. Trong giai đoạn 1837–1945, áo ngũ thân phổ biến khắp hai miền Nam Bắc và được xem là Quốc phục của người Việt.\n\nNguồn: Tập san Thời trang và Du lịch",
         "y_nghia": "- Năm thân áo tượng trưng cho tứ thân phụ mẫu và bản thân người mặc. \n- Năm chiếc khuy áo tượng trưng cho:\n        + Năm phẩm chất quan trọng của bậc quân tử là: Nhân, lễ, nghĩa, trí, tín.\n        + Ngũ luân, tức 5 mối quan hệ rường cột trong xã hội: Vua tôi, cha con, anh em, bạn bè, chồng vợ; \n        + Sự giao thoa của ngũ hành: Thổ, kim, thủy, mộc, hỏa. \n\nNguồn: Tập san Thời trang và Du lịch",
         "dac_diem": "Là một biến cách của áo tứ thân\n- Thân: được ghép lại bởi 5 mảnh vải (5 thân) bao gồm: 2 thân trước, 2 thân sau, 1 thân con nằm ở phía trước, bên phải người mặc. \n- Nút áo: áo ngũ thân có 5 nút, nút thứ 2 và nút 1 ở giữa cổ phải tạo thành đường thẳng vuông góc với đường trung phùng \n- Cổ áo: được dựng đứng có thể vuông vắn hoặc vạt tròn, ôm khít vào cổ\n- Tay áo: được thu hẹp dần bắt đầu từ nách về phía cổ tay và ôm vào cổ tay\n\nNguồn: Tập san Thời trang và Du lịch",
@@ -26,7 +111,15 @@
     "ao_tu_than": {
         "nhom": "Đại chúng & Dân tộc học cận - hiện đại",
         "ten": "Áo tứ thân",
-        "gioi_tinh": "Dành cho nữ",
+        "file_prefix": "ao_tu_than",
+        "gioi_tinh": ["Nữ"],
+        "mau_sac_nam": [],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Nâu (Brown)",
+                "file_mau": "nau"
+            }
+        ],
         "nguon_goc": "- Thời điểm xuất hiện: Theo truyền thuyết, áo tứ thân ra đời trong cuộc khởi nghĩa Hai Bà Trưng năm 40.\n- Nguồn gốc tên gọi: Do Hai Bà Trưng mặc áo 2 tà giáp vàng, người dân để tỏ lòng tôn kính đã tránh mặc áo 2 tà mà chuyển sang mặc kiểu áo được ghép lại từ 4 miếng vải, từ đó hình thành nên tên gọi áo tứ thân.\n\nNguồn: Cơ sở văn hóa Việt Nam",
         "y_nghia": "Theo truyền thống vùng Kinh Bắc, hai tà áo trước tượng trưng cho nhà chồng, hai tà áo sau tượng trưng cho nhà vợ, còn chiếc yếm bên trong như vòng tay người mẹ che chở, bao bọc.\n\nNguồn: Inside Viet Nam",
         "dac_diem": "- Thân áo: Ghép từ 4 mảnh vải (khổ vải hẹp 40cm), dài gần chấm gót. Hai thân sau may nối giữa sống lưng. Hai thân trước để hở (lộ yếm màu cánh sen bên trong), có thể buông thõng, thắt lại trước bụng tạo dáng thon thả, hoặc buộc quặt ra sau lưng.\n- Cổ áo: Viền hẹp khoảng 1 – 2 cm.\n- Khuy: Không có khuy cài khít, áo được giữ bằng cách thắt hai vạt trước lại với nhau.\n- Tay áo: May bó chặt.\n\nNguồn: Chuyên san KHXH & NV: Giá trị thẩm mỹ trong thiết kế trang phục áo dài phụ nữ truyền thống Việt Nam",
@@ -38,7 +131,64 @@
     "ao_ba_ba": {
         "nhom": "Đại chúng & Dân tộc học cận - hiện đại",
         "ten": "Áo bà ba",
-        "gioi_tinh": "Dành cho cả nam và nữ",
+        "file_prefix": "ao_ba_ba",
+        "gioi_tinh": ["Nam", "Nữ"],
+        "mau_sac_nam": [
+            {
+                "hien_thi": "Lam Khói Nhạt (Slate Blue / Muted Cyan)",
+                "file_mau": "xanh"
+            },
+            {
+                "hien_thi": "Xám Tro Ghi (Medium Ash)",
+                "file_mau": "xam"
+            },
+            {
+                "hien_thi": "Nâu Đất Khô (Earthy Ochre)",
+                "file_mau": "be"
+            },
+            {
+                "hien_thi": "Xanh Rêu Trầm (Vintage Moss)",
+                "file_mau": "reu"
+            },
+            {
+                "hien_thi": "Đen Than Chì (Charcoal Black)",
+                "file_mau": "den"
+            },
+            {
+                "hien_thi": "Nâu Cà Phê Đậm (Espresso Brown)",
+                "file_mau": "nau"
+            },
+            {
+                "hien_thi": "Trắng Ngọc Trai (Pearl Ivory)",
+                "file_mau": "trang"
+            }
+        ],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Hồng Đất Nhã Nhặn (Dusty Rose)",
+                "file_mau": "hong"
+            },
+            {
+                "hien_thi": "Vàng Mù Tạt Sáng (Soft Mustard)",
+                "file_mau": "vang"
+            },
+            {
+                "hien_thi": "Nâu Đỏ Cánh Gián (Burnt Sienna)",
+                "file_mau": "nau"
+            },
+            {
+                "hien_thi": "Xanh Cổ Vịt Sâu (Deep Teal)",
+                "file_mau": "xanh_co_vit"
+            },
+            {
+                "hien_thi": "Xanh Cổ Biển Sẫm (Classic Navy)",
+                "file_mau": "xanh"
+            },
+            {
+                "hien_thi": "Tím Mận Đậm (Dark Plum)",
+                "file_mau": "tim"
+            }
+        ],
         "nguon_goc": "Áo bà ba có nguồn gốc từ khu vực Malaysia và Singapore, du nhập vào Việt Nam từ cuối thế kỷ 19. Ban đầu, trang phục này thuộc về cộng đồng người Bà-ba - một tộc người Hoa lai với người Mã Lai sinh sống ở các khu vực này. Đặc biệt, vải đen được nhập khẩu phổ biến, và người dân miền Nam rất ưa chuộng kiểu áo vải đen này của người Bà-ba, từ đó, họ gọi tên nó là \"áo bà ba\".\n\nNguồn: Pháp Phục Nguyên Dung",
         "y_nghia": "Tượng trưng cho hình ảnh của người phụ nữ Việt Nam kiên cường, mạnh mẽ trong các cuộc chiến tranh chống giặc và giữ nước. \n\nNguồn: My tour",
         "dac_diem": "Áo không có cổ, thân áo phía sau may bằng một mảnh vải nguyên với thân trước gồm hai mảnh và ở giữa có hai dải khuy cài chạy dài từ trên xuống. Áo chít eo, xẻ tà vừa phải ở hai bên hông và có độ dài trùm qua mông.\n\nNguồn: Miss Saigon",
@@ -47,10 +197,67 @@
         "cach_phoi_hien_dai": "- Phối với Quần (Thay cho quần lụa đen truyền thống): Quần ống suông rộng cạp cao (Culottes/Palazzo), ưu tiên các màu sáng như trắng, kem, be.\n- Túi xách: Túi kẹp nách hoặc túi nhỏ, túi xách đính ngọc trai/cườm.\n- Trang sức phong cách tối giản: vòng cổ choker ngọc trai hạt nhỏ hoặc khuyên tai nụ ngọc trai.\n- Kim loại mảnh: Dây chuyền sợi mảnh, khuyên tai khoen tròn nhỏ hoặc vòng tay bản mỏng (màu bạc hoặc vàng hồng).\n- Đồng hồ: Đồng hồ dây kim loại bản nhỏ hoặc dây da thanh lịch.\n- Phụ kiện tóc: Kẹp nơ lụa bản to, kẹp càng cua bằng kim loại có thiết kế cách điệu, uốn lượn.\n- Giày dép: giày sục (Mules) bít mũi, gót thấp, sandal cao gót quai mảnh, giày búp bê mũi vuông hoặc mũi nhọn gót vuông thấp.",
         "phoi_mau": "Mệnh Hỏa (Đỏ, Cam) và Thổ (Vàng, Nâu): Tương sinh quyền lực\nTrong văn hóa cung đình, màu sắc được phân hạng nghiêm ngặt: Hoàng thái hậu dùng màu vàng (Thổ), trong khi Hoàng hậu dùng màu cam và Vương phi/Công chúa dùng màu đỏ hỏa lựu (Hỏa). Dựa trên nguyên lý Hỏa sinh Thổ và thuật toán phối màu (áo màu Đỏ gợi ý phụ kiện Vàng/Đen), bạn có thể khoác Đối khâm hoặc Phượng bào màu đỏ gạch bên ngoài, đi kèm túi xách hình hộp (box bag) màu vàng mustard. Sự kết hợp \"color block\" này vừa tạo hiệu ứng thị giác mạnh mẽ, vừa thuận theo quy luật tương sinh mang lại sự vượng khí.  \n Mệnh Thủy (Đen, Xanh sẫm): Phong cách Darkwear tối giản\nTrang phục của tầng lớp bình dân xưa như Áo Tứ điên chủ yếu có màu sẫm (màu đen) do kỹ thuật nhuộm thâm. Ngoài ra, nữ giới thời xưa cũng thường phối Giao lĩnh với váy quây màu thâm đen (thường đen). Nhóm màu hành Thủy này đặc biệt phù hợp với phong cách All-Black hoặc Grunge. Hãy thử phối một chiếc Áo Tứ điên đen cùng quần cargo túi hộp đồng màu, tạo điểm nhấn bằng trang sức kim loại bạc bản to (Kim sinh Thủy). Cách phối này làm nổi bật cá tính mạnh mà vẫn giữ được sự tinh gọn.  \n Mệnh Mộc (Xanh lục) và Kim (Trắng, Bạc): Sự tương phản thanh lịch\nGhi chép lịch sử từng nhắc đến việc nam giới mặc áo Giao lĩnh thụng tay màu lục. Dựa trên nguyên tắc gợi ý màu sắc của ứng dụng (nếu áo Xanh, gợi ý phối Trắng), hãy dùng một chiếc Giao lĩnh xanh lục (Mộc) khoác ngoài áo phông trơn trắng (Kim). Mặc dù Kim khắc Mộc, nhưng trong quy tắc thời trang hiện đại, màu trắng đóng vai trò làm nền móng (neutral) hoàn hảo, giúp sắc xanh di sản bật lên mạnh mẽ, mang đến vẻ ngoài tươi sáng và trẻ trung."
     },
-    "ao_tac_ngu_than_tay_thung": {
+    "ao_tac": {
         "nhom": "Lễ phục & Cung đình triều Nguyễn (Cận đại: 1802 – 1945)",
-        "ten": "Áo Tấc\n(ngũ thân tay thụng)",
-        "gioi_tinh": "Dành cho cả nam và nữ, không phân biệt đẳng cấp xã hội",
+        "ten": "Áo Tấc (ngũ thân tay thụng)",
+        "file_prefix": "ao_tac",
+        "gioi_tinh": ["Nam", "Nữ"],
+        "mau_sac_nam": [
+            {
+                "hien_thi": "Lam Ghi Sáng (Slate Silver)",
+                "file_mau": "xanh"
+            },
+            {
+                "hien_thi": "Xanh Cổ Vịt Đậm (Imperial Teal)",
+                "file_mau": "xanh_co_vit"
+            },
+            {
+                "hien_thi": "Be Khói Trầm (Muted Sandstone)",
+                "file_mau": "be"
+            },
+            {
+                "hien_thi": "Rêu Rừng Sâu (Deep Forest Moss)",
+                "file_mau": "reu"
+            },
+            {
+                "hien_thi": "Đen Mực Khói (Ink Black / Noir)",
+                "file_mau": "den"
+            },
+            {
+                "hien_thi": "Nâu Trầm Cánh Gián (Deep Amber Brown)",
+                "file_mau": "nau"
+            },
+            {
+                "hien_thi": "Trắng Ngọc Trai (Pearl Ivory)",
+                "file_mau": "trang"
+            }
+        ],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Hồng Trà / Hồng Đất (Dusty Rosewood)",
+                "file_mau": "hong"
+            },
+            {
+                "hien_thi": "Vàng Mỡ Gà Đậm (Warm Amber Silk)",
+                "file_mau": "vang"
+            },
+            {
+                "hien_thi": "Đỏ Hồng Ngọc (Deep Ruby / Thạch Lựu)",
+                "file_mau": "do"
+            },
+            {
+                "hien_thi": "Xanh Lam Cổ (Classic Indigo Silk)",
+                "file_mau": "xanh"
+            },
+            {
+                "hien_thi": "Tím Tử Đinh Hương Khói (Smoky Violet)",
+                "file_mau": "tim"
+            },
+            {
+                "hien_thi": "Rêu Phong Trầm (Antique Moss)",
+                "file_mau": "reu"
+            }
+        ],
         "nguon_goc": "- Là một loại trang phục đặc thù của thời Nguyễn, có lịch sử hình thành khoảng trên dưới 300 năm, gắn liền với công cuộc cải cách và định chế trang phục ở Đàng Trong của Chúa Nguyễn Phúc Khoát.\n- Tương truyền, tên gọi “Áo Tấc” vốn bắt nguồn từ phần viền áo rộng đúng một tấc (khoảng 4cm)\n\nNguồn: Tạp chí Đông Nam Á",
         "y_nghia": "- Năm thân áo tượng trưng cho tứ thân phụ mẫu và bản thân người mặc. - Năm chiếc khuy áo tượng trưng cho quan điểm ngũ thường trong Nho giáo, cụ thể, năm chiếc khuy đại diện cho 5 đức tính của bậc nam nhi là: Nhân, lễ, nghĩa, trí, tín; hay quan điểm về ngũ luân, tức 5 mối quan hệ rường cột trong xã hội: Vua tôi, cha con, anh em, bạn bè, chồng vợ; thậm chí còn mang cả ý nghĩa về sự giao thoa của ngũ hành: Thổ, kim, thủy, mộc hỏa.\n\nNguồn: Cổ trang hoàng cung",
         "dac_diem": "- Áo có phần tay dài rộng từ 30-50cm với chiều dài ống tay tính cộng theo từ cổ tay dài ra 40-50cm, không bó nách và có hình chữ nhật; tà áo thường dài không quá gối 10cm (phần nhiều trong khoảng 7-8cm). \n- Đây là kiểu áo may theo dáng áo viên lĩnh cổ tròn nhưng được nối thêm một dải vải đứng khoảng một tấc (4 cm) ôm lấy cổ áo. \n- Cổ áo dựng vuông và ôm khít vào cổ, và có 1 cúc ở chân cổ. \n- Khuy áo gồm 5 chiếc bố trí hình chữ “quảng”, làm bằng các vật liệu cứng (vàng, bạc, đồng, trân châu, ngà, đá…) và thường có màu đối lập với màu sắc áo để tạo nên sự nổi bật.\n\nNguồn: Cổ trang hoàng cung",
@@ -62,7 +269,27 @@
     "ao_nhat_binh": {
         "nhom": "Lễ phục & Cung đình triều Nguyễn (Cận đại: 1802 – 1945)",
         "ten": "Áo Nhật Bình",
-        "gioi_tinh": "Dành cho nữ",
+        "file_prefix": "ao_nhat_binh",
+        "gioi_tinh": ["Nữ"],
+        "mau_sac_nam": [],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Đỏ (Red)",
+                "file_mau": "do"
+            },
+            {
+                "hien_thi": "Cam (Orange)",
+                "file_mau": "cam"
+            },
+            {
+                "hien_thi": "Xanh (Blue)",
+                "file_mau": "xanh"
+            },
+            {
+                "hien_thi": "Tím (Purple)",
+                "file_mau": "tim"
+            }
+        ],
         "nguon_goc": "Là loại áo Phi phong của triều Minh, được triều Nguyễn tiếp thu, cải cách thành kiểu áo Phi phong đối khâm với những nét riêng, rất đặc sắc.\n\nNguồn: CardinaVN",
         "y_nghia": "Gọi là “Nhật Bình” là do phần hoa văn ở cổ áo có dạng hình chữ nhật cùng 2 viền bên ngoài. Phần tay áo được thêu hoa văn dải ngũ sắc tượng trưng cho ngũ hành (Kim, Mộc, Thủy, Hỏa, Thổ).\n\nNguồn: Cổ trang hoàng cung",
         "dac_diem": "- Nhật bình thuộc dạng thức áo đối khâm khoác bên ngoài áo dài tay chẽn hoặc áo tấc, được cài khuy chính giữa. Ngoài ra, nút áo tròn bằng ngọc điêu khắc tinh xảo dùng để trang trí chính là điểm đặc trưng của nhật bình so với áo phi phong nhà Minh.\n-  Áo có phần cổ thiết kế hình chữ nhật to bản, hai vạt được cố định bằng dây buộc, khi mặc vào thì phần trước ngực được ghép lại thành một hình chữ nhật nên mới có tên là áo Nhật bình. Khắp thân áo thường được trang trí lộng lẫy bằng các hoa văn dạng tròn dạng phụng ổ, loan ổ đan xen với các hình hoa lá, chữ Phúc, chữ Thọ… đính kim tuyến lấp lánh. Các hoa văn trang trí được sắp xếp dựa vào cấp bậc, vai vế của người mặc.\n\nNguồn: Cổ trang hoàng cung",
@@ -74,7 +301,23 @@
     "mang_bao_trieu_nguyen": {
         "nhom": "Lễ phục & Cung đình triều Nguyễn (Cận đại: 1802 – 1945)",
         "ten": "Mãng Bào triều Nguyễn",
-        "gioi_tinh": "Nam giới (Hoàng tử, Hoàng thái tử, quan lại đại thần)",
+        "file_prefix": "mang_bao",
+        "gioi_tinh": ["Nam"],
+        "mau_sac_nam": [
+            {
+                "hien_thi": "Hoàng kim",
+                "file_mau": "cam"
+            },
+            {
+                "hien_thi": "Đỏ rượu",
+                "file_mau": "do"
+            },
+            {
+                "hien_thi": "Tím",
+                "file_mau": "tim"
+            }
+        ],
+        "mau_sac_nu": [],
         "nguon_goc": "Được quy định nghiêm ngặt trong Khâm định Đại Nam hội điển sự lệ do Nội các triều Nguyễn biên soạn.",
         "y_nghia": "Thể hiện tính tôn ti trật tự tuyệt đối trong hoàng tộc và bá quan văn võ triều Nguyễn. Nếu vua mặc \"Long bào\" (rồng 5 móng) thì các bậc thấp hơn chỉ được mặc \"Mãng bào\" (rồng 4 móng).",
         "dac_diem": "Nền áo may trên phom dáng tay thụng, cổ tròn (hoặc cổ lập lĩnh). Áo của Hoàng tử thêu 9 con rồng 4 móng (gọi là mãng). Áo đại triều của Hoàng thái tử thêu đồ án viên long và cá chép hóa rồng (lý ngư hóa long) bưng dâng chữ Thọ.",
@@ -86,7 +329,15 @@
     "phuong_bao_trieu_nguyen": {
         "nhom": "Lễ phục & Cung đình triều Nguyễn (Cận đại: 1802 – 1945)",
         "ten": "Phượng bào triều Nguyễn",
-        "gioi_tinh": "Nữ giới (Hoàng thái hậu, Hoàng hậu, Phi tần bậc cao, Công chúa).",
+        "file_prefix": "phuong_bao",
+        "gioi_tinh": ["Nữ"],
+        "mau_sac_nam": [],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Vàng cam",
+                "file_mau": "cam"
+            }
+        ],
         "nguon_goc": "Quy định cụ thể qua các đời vua Gia Long, Minh Mạng, Thiệu Trị trong Khâm định Đại Nam hội điển sự lệ.",
         "y_nghia": "Là triều phục cao quý và lộng lẫy nhất dành cho bậc mẫu nghi thiên hạ, tượng trưng cho quyền lực, sự sinh sôi, đức hạnh của nữ giới hoàng tộc qua hình tượng chim phượng hoàng.",
         "dac_diem": "Kích thước áo rất rộng (sải tay có thể lên tới 230 cm). Áo thêu hình Cửu phượng (9 con chim phượng), xen kẽ họa tiết ngũ dơi (Ngũ phúc), sóng nước (thủy ba), tam sơn, mây trời. Màu sắc phân tầng nghiêm ngặt: Hoàng thái hậu dùng màu vàng, Hoàng hậu dùng màu cam, Vương phi và Công chúa dùng màu đỏ (hoa xích).",
@@ -98,7 +349,20 @@
     "ao_giao_linh": {
         "nhom": "Cổ phục trung đại & Nghi lễ cổ xưa (Lý – Trần – Lê: Thế kỷ 11 – 18)",
         "ten": "Áo Giao Lĩnh",
-        "gioi_tinh": "Nam, Nữ",
+        "file_prefix": "ao_giao_linh",
+        "gioi_tinh": ["Nam", "Nữ"],
+        "mau_sac_nam": [
+            {
+                "hien_thi": "Trắng Ngọc Trai (Pearl Ivory)",
+                "file_mau": "trang"
+            }
+        ],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Trắng Ngọc Trai (Pearl Ivory)",
+                "file_mau": "trang"
+            }
+        ],
         "nguon_goc": "Phổ biến ở nước ta từ thời Lý, Trần cho đến thời Hậu Lê (thế kỷ 11 - 18). Triều đình Lê - Trịnh từng coi áo giao lĩnh là một \"quốc tục\" cần được duy trì trước những biến động văn hóa\nNguồn: Cổ Phong",
         "y_nghia": "Thể hiện ý thức về tư tưởng \"lễ nhạc y quan\" (quy củ về mũ áo, nghi lễ) của các triều đại tự chủ.\nNguồn: Gạo Nâu",
         "dac_diem": "\"Giao lĩnh\" nghĩa là cổ áo giao nhau trước ngực, vạt bên trái đè lên vạt bên phải tạo thành hình chữ \"Y\". Áo của quý tộc may bằng lụa, the, đoạn với ống tay thụng lớn; dân thường mặc áo tay chẽn bằng vải thô, đũi để tiện lao động.\nNguồn: Tiểu luận CSVH: Đặc điểm và Thân phận Áo Giao Lĩnh Thời Lý-Trần",
@@ -107,10 +371,23 @@
         "cach_phoi_hien_dai": "Đặc trưng cốt lõi của Giao lĩnh là phần cổ chéo nhau trước ngực, trong đó vạt bên phải đè lên vạt bên trái tạo thành hình chữ \"y\". Dù phá cách đến đâu, việc giữ đúng chiều vạt áo này là quy tắc bắt buộc để không đi ngược lại văn hóa. Có thể phối Giao lĩnh cùng quần ống rộng hiện đại hoặc chân váy xếp ly dáng dài thay cho váy quây thâm đen cổ điển. Đi kèm một đôi giày sneaker đế chun (chunky sneaker) và túi đeo chéo nhỏ sẽ mang lại nét năng động.",
         "phoi_mau": "Mệnh Hỏa (Đỏ, Cam) và Thổ (Vàng, Nâu): Tương sinh quyền lực\nTrong văn hóa cung đình, màu sắc được phân hạng nghiêm ngặt: Hoàng thái hậu dùng màu vàng (Thổ), trong khi Hoàng hậu dùng màu cam và Vương phi/Công chúa dùng màu đỏ hỏa lựu (Hỏa). Dựa trên nguyên lý Hỏa sinh Thổ và thuật toán phối màu (áo màu Đỏ gợi ý phụ kiện Vàng/Đen), bạn có thể khoác Đối khâm hoặc Phượng bào màu đỏ gạch bên ngoài, đi kèm túi xách hình hộp (box bag) màu vàng mustard. Sự kết hợp \"color block\" này vừa tạo hiệu ứng thị giác mạnh mẽ, vừa thuận theo quy luật tương sinh mang lại sự vượng khí.  \n Mệnh Thủy (Đen, Xanh sẫm): Phong cách Darkwear tối giản\nTrang phục của tầng lớp bình dân xưa như Áo Tứ điên chủ yếu có màu sẫm (màu đen) do kỹ thuật nhuộm thâm. Ngoài ra, nữ giới thời xưa cũng thường phối Giao lĩnh với váy quây màu thâm đen (thường đen). Nhóm màu hành Thủy này đặc biệt phù hợp với phong cách All-Black hoặc Grunge. Hãy thử phối một chiếc Áo Tứ điên đen cùng quần cargo túi hộp đồng màu, tạo điểm nhấn bằng trang sức kim loại bạc bản to (Kim sinh Thủy). Cách phối này làm nổi bật cá tính mạnh mà vẫn giữ được sự tinh gọn.  \n Mệnh Mộc (Xanh lục) và Kim (Trắng, Bạc): Sự tương phản thanh lịch\nGhi chép lịch sử từng nhắc đến việc nam giới mặc áo Giao lĩnh thụng tay màu lục. Dựa trên nguyên tắc gợi ý màu sắc của ứng dụng (nếu áo Xanh, gợi ý phối Trắng), hãy dùng một chiếc Giao lĩnh xanh lục (Mộc) khoác ngoài áo phông trơn trắng (Kim). Mặc dù Kim khắc Mộc, nhưng trong quy tắc thời trang hiện đại, màu trắng đóng vai trò làm nền móng (neutral) hoàn hảo, giúp sắc xanh di sản bật lên mạnh mẽ, mang đến vẻ ngoài tươi sáng và trẻ trung."
     },
-    "ao_doi_kham_truc_linh_khoac_ngoai": {
+    "ao_doi_kham": {
         "nhom": "Cổ phục trung đại & Nghi lễ cổ xưa (Lý – Trần – Lê: Thế kỷ 11 – 18)",
-        "ten": "Áo Đối Khâm\n(Trực lĩnh khoác ngoài)",
-        "gioi_tinh": "Nam, Nữ",
+        "ten": "Áo Đối Khâm (Trực lĩnh khoác ngoài)",
+        "file_prefix": "ao_doi_kham",
+        "gioi_tinh": ["Nam", "Nữ"],
+        "mau_sac_nam": [
+            {
+                "hien_thi": "Đen (Black)",
+                "file_mau": "den"
+            }
+        ],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Đen (Black)",
+                "file_mau": "den"
+            }
+        ],
         "nguon_goc": "Có nguồn gốc từ phương Đông từ rất sớm, đỉnh cao phát triển là vào thời Đường - Tống. Tại Việt Nam, đến thời Lê Trung Hưng, áo đối khâm đã được sử dụng tương đối rộng rãi ở cả trong cung đình và dân gian.\nNguồn: Thanh Phong",
         "y_nghia": "Không chỉ là một kiểu cắt may đặc trưng mà còn là nền tảng hình thành nên nhiều loại y phục khác, giúp hậu thế nhìn nhận rõ những nét giao thoa văn hóa khu vực và bản sắc riêng trong trang phục cổ Việt Nam.\nNguồn: Cổ Phục Gấm Hoa",
         "dac_diem": "Đặc trưng của áo là hai vạt áo trước ngực chạy song song đối xứng nhau chứ không vắt chéo. Áo thường được cố định bằng nút gài ở chính giữa ngực hoặc dùng dải vải để buộc, đôi khi dải buộc buông thõng mở phanh vạt áo. Phần cổ áo có thể cắt theo dạng cổ thẳng (trực lĩnh đối khâm), cổ vuông (phương lĩnh) hoặc cổ đứng (thụ lĩnh).\nNguồn: WordPress.com",
@@ -121,8 +398,21 @@
     },
     "ao_vien_linh_doan_linh_ban_linh": {
         "nhom": "Cổ phục trung đại & Nghi lễ cổ xưa (Lý – Trần – Lê: Thế kỷ 11 – 18)",
-        "ten": "Áo Viên Lĩnh\n(Đoàn Lĩnh/Bàn Lĩnh)",
-        "gioi_tinh": "Nam, Nữ vua chúa, quý tộc, quan lại",
+        "ten": "Áo Viên Lĩnh (Đoàn Lĩnh/Bàn Lĩnh)",
+        "file_prefix": "ao_vien_linh",
+        "gioi_tinh": ["Nam", "Nữ"],
+        "mau_sac_nam": [
+            {
+                "hien_thi": "Xanh (Blue)",
+                "file_mau": "xanh"
+            }
+        ],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Xanh (Blue)",
+                "file_mau": "xanh"
+            }
+        ],
         "nguon_goc": "Tại Việt Nam, áo viên lĩnh (cổ tròn) đã được sử dụng rộng khắp từ vua chúa đến dân thường trong suốt thời kỳ triều Lý và triều Trần và tiếp tục được bảo lưu đến tận triều Nguyễn.\nNguồn: WordPress.com",
         "y_nghia": "Đại diện cho tính chuẩn mực, tính tôn nghiêm và là hình mẫu của lễ phục cung đình qua nhiều triều đại.\nNguồn: Cổ Phục Gấm Hoa",
         "dac_diem": "Áo viên lĩnh (hay bàn lĩnh, đoàn lĩnh) có phần cổ áo được cắt tròn ép sát vào vòng cổ của người mặc, vạt áo cài sang bên nách phải. Bên trong thân áo vẫn giữ cấu trúc dùng dải gút để buộc lại tương tự như áo giao lĩnh. Chiều dài áo có thể là vạt ngắn (ngang đầu gối) hoặc vạt dài phủ chấm gót.\nNguồn: Áo dài Cô Sáu",
@@ -133,8 +423,21 @@
     },
     "ao_tu_dien_bien_the_cua_vien_linh": {
         "nhom": "Cổ phục trung đại & Nghi lễ cổ xưa (Lý – Trần – Lê: Thế kỷ 11 – 18)",
-        "ten": "Áo Tứ Điên\n(biến thể của Viên Lĩnh)",
-        "gioi_tinh": "Nam, Nữ bình dân",
+        "ten": "Áo Tứ Điên (biến thể của Viên Lĩnh)",
+        "file_prefix": "ao_tu_dien",
+        "gioi_tinh": ["Nam", "Nữ"],
+        "mau_sac_nam": [
+            {
+                "hien_thi": "Đen (Black)",
+                "file_mau": "den"
+            }
+        ],
+        "mau_sac_nu": [
+            {
+                "hien_thi": "Hồng Phấn Cánh Sen (Blush Peach)",
+                "file_mau": "hong"
+            }
+        ],
         "nguon_goc": "Ghi nhận rõ nét nhất vào thời Lý. Học giả Mã Đoan Lâm (Trung Quốc) đã miêu tả chi tiết về loại áo này của người Việt.\nNguồn: Cổ Phong",
         "y_nghia": "Phản ánh tập tục ăn mặc tối giản, đề cao tính thực dụng trong lao động và đời sống sinh hoạt của lớp người bình dân thời Lý, đồng thời cho thấy kỹ thuật dệt nhuộm thủ công sơ khai (chủ yếu nhuộm thâm/đen).\nNguồn: Gạo Nâu",
         "dac_diem": "Đây là dạng áo sam màu đen, cổ tròn (viên lĩnh) may bó sát vào người, thân áo xẻ thành bốn vạt (tương tự như áo bối tử của Trung Hoa) nên được gọi là \"áo tứ điên\" (tứ: bốn).\nNguồn: Tiểu luận CSVH: Đặc điểm và Thân phận Áo Giao Lĩnh Thời Lý-Trần",
