@@ -2,10 +2,14 @@ import streamlit as st
 import base64
 import os
 import json 
+import sys
+
+# Thêm thư mục gốc vào đường dẫn hệ thống để Python tìm thấy file ai_handler.py
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from ai_handler import tu_van_viet_phuc
 
 st.set_page_config(page_title="Chatbot phối đồ", layout="wide", initial_sidebar_state="collapsed")
 
-# 1. CẬP NHẬT DANH MỤC TRONG TRẠNG THÁI CHUNG
 if 'theme' not in st.session_state:
     st.session_state.theme = 'light' 
 if 'current_step_index' not in st.session_state:
@@ -31,24 +35,10 @@ def get_base64_of_bin_file(bin_file):
 img_base64 = get_base64_of_bin_file('data/trongdong.jpg')
 font_base64 = get_base64_of_bin_file('data/fontChu.otf') 
 
-# -----------------------------
-# CSS GIAO DIỆN VÀ THEME
-# -----------------------------
 if st.session_state.theme == 'light':
     theme_css = f"""
-    [data-testid="stAppViewContainer"] {{
-        background-color: #F3EEE0 !important;
-        background-image: none !important;
-        overflow-x: hidden !important;
-    }}
-    .scrollable-pattern {{
-        position: absolute;
-        top: -3rem; left: 50%; transform: translateX(-50%);
-        width: 100vw; height: 142px; 
-        background-image: url('data:image/jpeg;base64,{img_base64}');
-        background-size: 300px; background-repeat: repeat;
-        filter: invert(1); opacity: 0.05; z-index: 0; pointer-events: none;
-    }}
+    [data-testid="stAppViewContainer"] {{ background-color: #F3EEE0 !important; background-image: none !important; overflow-x: hidden !important; }}
+    .scrollable-pattern {{ position: absolute; top: -3rem; left: 50%; transform: translateX(-50%); width: 100vw; height: 142px; background-image: url('data:image/jpeg;base64,{img_base64}'); background-size: 300px; background-repeat: repeat; filter: invert(1); opacity: 0.05; z-index: 0; pointer-events: none; }}
     .stMarkdown, p, span, div, h1, h2, h3, h4, h5, h6, label {{ color: #123C46 !important; font-weight: normal; }}
     .elodie-title {{ color: #D85A3F !important; }}
     [data-testid="stButton"] button {{ background-color: transparent !important; border: 2px solid #D85A3F !important; }}
@@ -70,19 +60,8 @@ if st.session_state.theme == 'light':
     """
 else:
     theme_css = f"""
-    [data-testid="stAppViewContainer"] {{
-        background: linear-gradient(rgba(120, 20, 20, 0.85), rgba(120, 20, 20, 0.9)) !important;
-        background-image: linear-gradient(rgba(120, 20, 20, 0.85), rgba(120, 20, 20, 0.9)) !important; 
-        overflow-x: hidden !important;
-    }}
-    .scrollable-pattern {{
-        position: absolute;
-        top: -3rem; left: 50%; transform: translateX(-50%);
-        width: 100vw; height: 142px; 
-        background-image: url('data:image/jpeg;base64,{img_base64}');
-        background-size: 300px; background-repeat: repeat;
-        opacity: 0.15; z-index: 0; pointer-events: none;
-    }}
+    [data-testid="stAppViewContainer"] {{ background: linear-gradient(rgba(120, 20, 20, 0.85), rgba(120, 20, 20, 0.9)) !important; background-image: linear-gradient(rgba(120, 20, 20, 0.85), rgba(120, 20, 20, 0.9)) !important; overflow-x: hidden !important; }}
+    .scrollable-pattern {{ position: absolute; top: -3rem; left: 50%; transform: translateX(-50%); width: 100vw; height: 142px; background-image: url('data:image/jpeg;base64,{img_base64}'); background-size: 300px; background-repeat: repeat; opacity: 0.15; z-index: 0; pointer-events: none; }}
     .stMarkdown, p, span, div, h1, h2, h3, h4, h5, h6, label {{ color: #F1E3C8 !important; font-weight: normal; }}
     .elodie-title {{ color: #E53935 !important; }} 
     [data-testid="stButton"] button {{ background-color: transparent !important; border: 2px solid #F1E3C8 !important; }}
@@ -109,7 +88,9 @@ custom_css = f"""
     @font-face {{ font-family: 'Elodie'; src: url(data:font/otf;charset=utf-8;base64,{font_base64}) format('opentype'); }}
     header[data-testid="stHeader"] {{ display: none !important; }}
     .block-container {{ position: relative; z-index: 1; padding-top: 2rem !important; }}
+    
     .elodie-title {{ font-family: 'Elodie', sans-serif !important; letter-spacing: 1.5px !important; font-size: 32px !important; margin-bottom: 10px; font-weight: normal !important; position: relative; z-index: 2; }}
+    
     [data-testid="stButton"] button {{ border-radius: 8px; transition: all 0.3s ease; padding: 6px 16px !important; position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; }}
     [data-testid="stButton"] button p {{ font-size: 15px !important; margin: 0 !important; text-align: center; }}
     [data-testid="stButton"] button:hover {{ transform: translateY(-2px); }}
@@ -117,7 +98,10 @@ custom_css = f"""
     .mockup-area {{ border-radius: 20px; height: 450px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 20px; position: relative; z-index: 2; }}
     .white-box {{ padding: 10px 25px; border-radius: 10px; margin: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-weight: bold; font-size: 16px; }}
     .color-circle {{ width: 35px; height: 35px; border-radius: 50%; margin-bottom: 15px; cursor: pointer; display: block; position: relative; z-index: 2; }}
-    .chatbot-area {{ border-radius: 15px; height: 450px; padding: 20px; display: flex; flex-direction: column; position: relative; z-index: 2; }}
+    
+    /* Bổ sung overflow-y: auto để thanh cuộn hoạt động khi AI trả lời dài */
+    .chatbot-area {{ border-radius: 15px; height: 450px; padding: 20px; display: flex; flex-direction: column; position: relative; z-index: 2; overflow-y: auto; }}
+    
     .product-card {{ border-radius: 10px; padding: 10px; text-align: center; position: relative; height: 180px; transition: all 0.2s; z-index: 2; margin-bottom: 15px; }}
     .product-card.selected::after {{ content: '✔'; position: absolute; bottom: 5px; left: 10px; font-size: 20px; font-weight: bold; }}
     .product-card img {{ width: 100%; height: 100px; object-fit: cover; border-radius: 5px; }}
@@ -128,15 +112,13 @@ custom_css = f"""
 st.markdown(custom_css, unsafe_allow_html=True)
 st.markdown('<div class="scrollable-pattern"></div>', unsafe_allow_html=True)
 
-# -----------------------------
-# THANH ĐIỀU HƯỚNG CÓ NÚT THEME
-# -----------------------------
 top_left, top_mid, top_right, top_theme = st.columns([1.5, 6.5, 1, 1])
 with top_left:
     if st.button("Trang chủ", use_container_width=True):
         st.switch_page("app.py")
 with top_right:
-    st.button("Xuất", type="primary", use_container_width=True)
+    if st.button("Xuất", type="primary", use_container_width=True):
+        st.switch_page("pages/final_result.py")
 with top_theme:
     theme_label = "Sáng" if st.session_state.theme == 'dark' else "Tối"
     if st.button(theme_label, use_container_width=True):
@@ -145,9 +127,6 @@ with top_theme:
 
 st.markdown("<hr style='border: 1px solid rgba(241, 227, 200, 0.15); margin: 10px 0 20px 0; position: relative; z-index: 2;'>", unsafe_allow_html=True)
 
-# -----------------------------
-# NỬA TRÊN: MÀU - MOCKUP - CHATBOT
-# -----------------------------
 col_color, col_mockup, col_chat = st.columns([0.8, 6.2, 3])
 
 with col_color:
@@ -172,17 +151,48 @@ with col_mockup:
 with col_chat:
     st.markdown('<div class="chatbot-area">', unsafe_allow_html=True)
     st.markdown('<div class="elodie-title">Chatbot Tư Vấn</div>', unsafe_allow_html=True)
-    st.markdown('<p style="font-size:14px; margin-bottom:20px;">Khu vực tích hợp AI Chatbot. Hệ thống sẽ phân tích các trang phục bạn chọn và đưa ra gợi ý.</p>', unsafe_allow_html=True)
-    st.text_input("Ví dụ: Áo Tấc đỏ nên phối với quần màu gì?", label_visibility="collapsed")
-    st.button("Gửi")
+    st.markdown('<p style="font-size:14px; margin-bottom:10px;">Khu vực tích hợp AI Chatbot. Hệ thống sẽ phân tích các trang phục bạn chọn và đưa ra gợi ý.</p>', unsafe_allow_html=True)
+    
+    # -----------------------------
+    # TÍCH HỢP XỬ LÝ CHATBOT AI
+    # -----------------------------
+    user_question = st.text_input("Câu hỏi của bạn:", placeholder="Ví dụ: Áo Tấc đỏ nên phối với quần màu gì?", label_visibility="collapsed")
+    
+    if st.button("Gửi"):
+        if user_question:
+            with st.spinner("Stylist AI đang suy nghĩ..."):
+                # Gọi hàm từ ai_handler.py
+                ai_response_str = tu_van_viet_phuc(user_question)
+                try:
+                    # Chuyển đổi chuỗi JSON trả về thành Dictionary
+                    ai_data = json.loads(ai_response_str)
+                    st.session_state.ai_response = ai_data
+                except json.JSONDecodeError:
+                    st.session_state.ai_response = {"loi": "Đã có lỗi xảy ra khi phân tích câu trả lời từ AI. Bạn thử lại nhé!"}
+        else:
+            st.warning("Vui lòng nhập câu hỏi trước khi gửi.")
+            
+    # Hiển thị kết quả từ session_state (để kết quả không biến mất khi bấm các nút khác)
+    if 'ai_response' in st.session_state:
+        st.markdown("<hr style='border: 1px solid rgba(241, 227, 200, 0.15); margin: 10px 0;'>", unsafe_allow_html=True)
+        resp = st.session_state.ai_response
+        
+        if "loi" in resp:
+            st.error(resp["loi"])
+        else:
+            if resp.get("ten_trang_phuc"):
+                st.markdown(f"**Trang phục:** {resp['ten_trang_phuc']}")
+            if resp.get("loi_khuyen_stylist"):
+                st.markdown(f"**💡 Lời khuyên:** {resp['loi_khuyen_stylist']}")
+            if resp.get("phoi_hien_dai"):
+                st.markdown(f"**👗 Phối hiện đại:** {resp['phoi_hien_dai']}")
+            if resp.get("phoi_mau"):
+                st.markdown(f"**🎨 Phối màu:** {resp['phoi_mau']}")
+                
     st.markdown('</div>', unsafe_allow_html=True)
 
-# -----------------------------
-# NỬA DƯỚI: KHU VỰC CHỌN SẢN PHẨM
-# -----------------------------
 st.markdown("<hr style='border: 1px solid rgba(241, 227, 200, 0.15); margin: 10px 0 20px 0;'>", unsafe_allow_html=True)
 
-# THUẬT TOÁN "CỬA SỔ TRƯỢT" CHO TAB BAR
 nav_col1, nav_col2, nav_col3 = st.columns([1.5, 7, 1.5])
 with nav_col1:
     if st.button("❮ Trước", disabled=(st.session_state.current_step_index == 0), use_container_width=True):
@@ -190,19 +200,14 @@ with nav_col1:
         st.rerun()
         
 with nav_col2:
-    # Số lượng tab tối đa hiện trên màn hình (để không bị ép chữ)
     VISIBLE_TABS = 4
-    
-    # Tính toán vị trí bắt đầu hiển thị để tab đang chọn luôn nằm trong vùng nhìn thấy
     start_idx = st.session_state.current_step_index - (VISIBLE_TABS // 2)
     if start_idx < 0:
         start_idx = 0
     if start_idx > len(steps) - VISIBLE_TABS:
         start_idx = max(0, len(steps) - VISIBLE_TABS)
         
-    # Cắt danh sách tab vừa đủ để hiển thị
     visible_steps = steps[start_idx : start_idx + VISIBLE_TABS]
-    
     tab_cols = st.columns(len(visible_steps))
     for i, step_name in enumerate(visible_steps):
         real_index = start_idx + i
@@ -281,7 +286,6 @@ if current_step == 'Váy/Quần':
             quan_list.append(item)
     current_items = vay_list + quan_list
 
-# RENDER SẢN PHẨM (4 CỘT / HÀNG)
 NUM_COLS = 4
 
 for row_idx in range(0, len(current_items), NUM_COLS):
