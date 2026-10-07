@@ -19,7 +19,7 @@ def get_base64_of_bin_file(bin_file):
         return ""
 
 img_base64 = get_base64_of_bin_file('trongdong.jpg')
-font_base64 = get_base64_of_bin_file('MTD-Elodie.otf') 
+font_base64 = get_base64_of_bin_file('fontChu.otf') 
 
 # -----------------------------
 # 1. TẠO CSS ĐỘNG DỰA TRÊN THEME
@@ -27,13 +27,24 @@ font_base64 = get_base64_of_bin_file('MTD-Elodie.otf')
 if st.session_state.theme == 'dark':
     theme_css = f"""
     [data-testid="stAppViewContainer"] {{
-        background: linear-gradient(rgba(120, 20, 20, 0.85), rgba(120, 20, 20, 0.9)), 
-                    url('data:image/jpeg;base64,{img_base64}');
+        background: linear-gradient(rgba(120, 20, 20, 0.85), rgba(120, 20, 20, 0.95)); 
+        color: #F1E3C8;
+        overflow-x: hidden !important; 
+    }}
+    .scrollable-pattern {{
+        position: absolute;
+        top: -3rem; 
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 142px; 
+        background-image: url('data:image/jpeg;base64,{img_base64}');
         background-size: 300px;
         background-repeat: repeat;
-        color: #F1E3C8;
+        opacity: 0.15;
+        z-index: 0;
+        pointer-events: none;
     }}
-    .bg-pattern {{ display: none !important; }}
     
     .stMarkdown, p, span, div, h1, h2, h3, h4, h5, h6, label {{ color: #F1E3C8 !important; }}
     .nav-brand {{ color: #F1E3C8 !important; }}
@@ -42,8 +53,18 @@ if st.session_state.theme == 'dark':
     .hero-line-2 {{ color: #F1E3C8 !important; }}
     .hero-desc {{ color: #DBCDB5 !important; }}
     
-    [data-testid="stButton"] button {{ background-color: transparent !important; color: #F1E3C8 !important; border: 1px solid rgba(241, 227, 200, 0.3) !important; }}
-    [data-testid="stButton"] button:hover {{ border-color: #F1E3C8 !important; color: #781414 !important; background-color: #F1E3C8 !important; }}
+    /* Giao diện nút bấm đồng bộ với chatbot_phoi_do */
+    [data-testid="stButton"] button {{ background-color: transparent !important; border: 2px solid #F1E3C8 !important; }}
+    [data-testid="stButton"] button p {{ color: #F1E3C8 !important; font-weight: bold !important; }}
+    
+    [data-testid="stButton"] button:hover, [data-testid="stButton"] button:focus, [data-testid="stButton"] button:active {{ 
+        background-color: #F1E3C8 !important; 
+        border-color: #F1E3C8 !important; 
+    }}
+    [data-testid="stButton"] button:hover p, [data-testid="stButton"] button:focus p, [data-testid="stButton"] button:active p {{ 
+        color: #781414 !important; 
+    }}
+    
     .cta-button {{ color: #F1E3C8 !important; border: 2px solid #F1E3C8 !important; }}
     .cta-button:hover {{ background-color: #F1E3C8 !important; color: #781414 !important; }}
     
@@ -64,19 +85,22 @@ else:
     [data-testid="stAppViewContainer"] {{
         background-color: #F3EEE0 !important;
         background-image: none !important;
+        overflow-x: hidden !important; 
     }}
-    .bg-pattern {{
-        display: block;
-        position: fixed;
-        top: 0; left: 0; width: 100vw; height: 100vh;
-        z-index: 0;
+    .scrollable-pattern {{
+        position: absolute;
+        top: -3rem; 
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 142px; 
         background-image: url('data:image/jpeg;base64,{img_base64}');
         background-size: 300px;
         background-repeat: repeat;
         filter: invert(1) opacity(0.06);
+        z-index: 0;
         pointer-events: none;
     }}
-    .block-container {{ position: relative; z-index: 1; }}
 
     .stMarkdown, p, span, div, h1, h2, h3, h4, h5, h6, label {{ color: #123C46 !important; }}
     .nav-brand {{ color: #D85A3F !important; }}
@@ -85,8 +109,17 @@ else:
     .hero-line-2 {{ color: #123C46 !important; }}
     .hero-desc {{ color: #123C46 !important; font-weight: 500; }}
     
-    [data-testid="stButton"] button {{ background-color: #FFFFFF !important; color: #123C46 !important; border: 2px solid #559E9E !important; }}
-    [data-testid="stButton"] button:hover {{ background-color: #F3EEE0 !important; }}
+    /* Giao diện nút bấm đồng bộ với chatbot_phoi_do */
+    [data-testid="stButton"] button {{ background-color: transparent !important; border: 2px solid #D85A3F !important; }}
+    [data-testid="stButton"] button p {{ color: #D85A3F !important; font-weight: bold !important; }}
+    
+    [data-testid="stButton"] button:hover, [data-testid="stButton"] button:focus, [data-testid="stButton"] button:active {{ 
+        background-color: #D85A3F !important; 
+    }}
+    [data-testid="stButton"] button:hover p, [data-testid="stButton"] button:focus p, [data-testid="stButton"] button:active p {{ 
+        color: #FFFFFF !important; 
+    }}
+    
     .cta-button {{ color: #D85A3F !important; border: 2px solid #D85A3F !important; }}
     .cta-button:hover {{ background-color: #D85A3F !important; color: #FFFFFF !important; }}
     
@@ -105,17 +138,44 @@ else:
 
 custom_css = f"""
 <style>
+    /* Xóa bỏ khoảng trắng và thanh cuộn ngang cấp cao nhất */
+    html, body {{
+        overflow-x: hidden !important;
+    }}
+    
     @font-face {{
         font-family: 'Elodie';
         src: url(data:font/otf;charset=utf-8;base64,{font_base64}) format('opentype');
     }}
-    .block-container {{ padding-top: 1.5rem !important; }}
-    header {{ visibility: hidden; }}
-    .nav-brand {{ font-family: 'Elodie', sans-serif; font-size: 42px; font-weight: 900; margin-bottom: -5px; letter-spacing: 2px; }}
-    .nav-subtitle {{ font-size: 14px; font-style: italic; }}
-    [data-testid="stButton"] button {{ border-radius: 8px; font-weight: 600; transition: all 0.3s ease; font-family: sans-serif; }}
-    .hero-line-1 {{ font-family: 'Elodie', sans-serif; font-size: 5rem; font-weight: 900; line-height: 1.1; margin-bottom: 5px; }}
-    .hero-line-2 {{ font-family: 'Elodie', sans-serif; font-size: 4.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 25px; }}
+    
+    header[data-testid="stHeader"] {{ display: none !important; }}
+    
+    .block-container {{ 
+        padding-top: 2rem !important; 
+        position: relative; 
+        z-index: 1; 
+    }}
+    
+    .nav-brand {{ font-family: 'Elodie', sans-serif; font-size: 34px; font-weight: normal; margin-bottom: -5px; letter-spacing: 2px; position: relative; z-index: 2; }}
+    .nav-subtitle {{ font-size: 14px; font-style: italic; position: relative; z-index: 2; }}
+    
+    /* Thiết lập kích thước nút gọn gàng đồng bộ với chatbot_phoi_do */
+    [data-testid="stButton"] button {{ 
+        border-radius: 8px; 
+        transition: all 0.3s ease; 
+        padding: 6px 16px !important; 
+        position: relative; 
+        z-index: 2;
+    }}
+    [data-testid="stButton"] button p {{
+        font-size: 15px !important; 
+        margin: 0 !important;
+    }}
+    [data-testid="stButton"] button:hover {{ transform: translateY(-2px); }}
+    
+    .hero-line-1 {{ font-family: 'Elodie', sans-serif; font-size: 4rem; font-weight: normal; line-height: 1.2; margin-bottom: 5px; }}
+    .hero-line-2 {{ font-family: 'Elodie', sans-serif; font-size: 3.5rem; font-weight: normal; line-height: 1.2; margin-bottom: 25px; }}
+    
     .hero-desc {{ font-size: 1.2rem; margin-bottom: 30px; font-family: sans-serif; }}
     .cta-button {{ display: inline-block; padding: 12px 28px; border-radius: 8px; text-decoration: none !important; font-weight: bold; font-size: 18px; transition: all 0.3s ease; font-family: sans-serif; }}
     .slider-container {{ display: flex; overflow-x: auto; gap: 20px; padding-bottom: 20px; scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none; }}
@@ -128,8 +188,10 @@ custom_css = f"""
     .outfit-card:hover .card-actions {{ opacity: 1; }}
     .card-btn {{ padding: 10px 24px; border-radius: 25px; text-align: center; text-decoration: none !important; font-weight: bold; font-size: 15px; cursor: pointer; transition: all 0.2s ease; font-family: sans-serif; }}
     .card-btn:hover {{ transform: scale(1.05); }}
-    .outfit-name {{ text-align: center; font-family: 'Elodie', sans-serif; font-size: 1.8rem; margin-top: 5px; letter-spacing: 1px; }}
-    h3.elodie-title {{ font-family: 'Elodie', sans-serif; margin-bottom: 20px; font-size: 2.5rem; }}
+    
+    .outfit-name {{ text-align: center; font-family: 'Elodie', sans-serif; font-size: 1.5rem; font-weight: normal; margin-top: 5px; letter-spacing: 1px; }}
+    h3.elodie-title {{ font-family: 'Elodie', sans-serif; margin-bottom: 20px; font-size: 2.2rem; font-weight: normal; }}
+    
     .carousel-wrapper {{ position: relative; display: flex; align-items: center; padding: 0 50px; }}
     .nav-arrow {{ position: absolute; top: 42%; transform: translateY(-50%); border-radius: 50%; width: 45px; height: 45px; font-size: 20px; font-weight: bold; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }}
     .left-arrow {{ left: 0; }}
@@ -138,35 +200,40 @@ custom_css = f"""
 </style>
 """
 st.markdown(custom_css, unsafe_allow_html=True)
-st.markdown('<div class="bg-pattern"></div>', unsafe_allow_html=True)
+
+# Chèn hoa văn chìm ngay đầu block-container để nó cuộn theo nội dung
+st.markdown('<div class="scrollable-pattern"></div>', unsafe_allow_html=True)
 
 # -----------------------------
 # 2. THANH ĐIỀU HƯỚNG CÓ NÚT THEME
 # -----------------------------
-nav_col1, spacer, nav_col2, nav_col3, nav_col4 = st.columns([3, 4, 1.5, 1.5, 1])
+# Đã điều chỉnh lại tỷ lệ cột để các nút có đủ không gian hiển thị toàn bộ chữ
+nav_col1, spacer, nav_col2, nav_col3, nav_col4 = st.columns([2.5, 3.5, 1.2, 1.8, 1])
 
 with nav_col1:
     st.markdown('<div class="nav-brand">Tam Tấu</div>', unsafe_allow_html=True)
     st.markdown('<div class="nav-subtitle">Việt phục remix</div>', unsafe_allow_html=True)
 
-with nav_col2:
+with spacer:
     st.write("") 
+
+with nav_col2:
+    st.write("")
     st.button("Trang chủ", use_container_width=True)
 
 with nav_col3:
     st.write("") 
     if st.button("Chatbot phối đồ", use_container_width=True):
-        st.switch_page("pages/1_Chatbot_phoi_do.py") 
+        st.switch_page("pages/chatbot_phoi_do.py") 
 
 with nav_col4:
     st.write("") 
-    # Đã bỏ icon mặt trời/mặt trăng
     theme_label = "Sáng" if st.session_state.theme == 'dark' else "Tối"
     if st.button(theme_label, use_container_width=True):
         st.session_state.theme = 'light' if st.session_state.theme == 'dark' else 'dark'
         st.rerun()
 
-st.markdown("<hr style='border: 1px solid rgba(241, 227, 200, 0.15); margin-top: 5px; margin-bottom: 40px;'>", unsafe_allow_html=True)
+st.markdown("<hr style='border: 1px solid rgba(241, 227, 200, 0.15); margin-top: 5px; margin-bottom: 40px; position: relative; z-index: 2;'>", unsafe_allow_html=True)
 
 # -----------------------------
 # 3. MAIN CONTENT & SLIDE BAR 
