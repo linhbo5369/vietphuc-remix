@@ -6,7 +6,6 @@ import sys
 
 # Thêm thư mục gốc vào đường dẫn hệ thống để Python tìm thấy file ai_handler.py
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-# --- CẬP NHẬT: IMPORT HÀM TỪ AI_HANDLER PHIÊN BẢN MỚI ---
 from ai_handler import khoi_tao_chatbot, gui_tin_nhan
 
 st.set_page_config(page_title="Chatbot phối đồ", layout="wide", initial_sidebar_state="collapsed")
@@ -24,7 +23,7 @@ if 'user_gender' not in st.session_state:
 if 'user_color' not in st.session_state:
     st.session_state.user_color = None
 
-# --- CẬP NHẬT: KHỞI TẠO SESSION AI VÀ LỜI CHÀO CHUẨN ---
+# --- KHỞI TẠO BỘ NHỚ LỊCH SỬ CHAT VÀ LỜI CHÀO MỞ ĐẦU ---
 if "chat_session" not in st.session_state:
     st.session_state.chat_session = khoi_tao_chatbot()
 
@@ -88,16 +87,24 @@ if st.session_state.theme == 'light':
     [data-testid="stButton"] button p {{ color: #D85A3F !important; font-weight: bold !important; }}
     [data-testid="stButton"] button:hover, [data-testid="stButton"] button:focus, [data-testid="stButton"] button:active {{ background-color: #D85A3F !important; }}
     [data-testid="stButton"] button:hover p, [data-testid="stButton"] button:focus p, [data-testid="stButton"] button:active p {{ color: #FFFFFF !important; }}
-    div[data-testid="stButton"] > button[kind="primary"] {{ background-color: #D85A3F !important; border-color: #D85A3F !important; }}
-    div[data-testid="stButton"] > button[kind="primary"] p {{ color: #FFFFFF !important; }}
     .mockup-area {{ border: 3px solid #D85A3F; background-color: rgba(255, 255, 255, 0.55); }}
     .color-circle {{ border: 2px solid #123C46; }}
-    div[data-testid="column"]:nth-of-type(3) div[data-testid="stVerticalBlockBorderWrapper"] {{ background-color: rgba(222, 231, 231, 0.85) !important; border-radius: 15px; border: none !important; padding: 10px; }}
-    .product-card {{ border: 2px solid #559E9E; background-color: #FFFFFF; }}
-    .product-card.selected {{ border: 3px solid #123C46; background-color: #DEE7E7; }}
-    .product-card.selected::after {{ color: #123C46; }}
-    .product-name {{ color: #123C46 !important; }}
-    div[data-testid="stChatMessage"] {{ background-color: rgba(255,255,255,0.6); border-radius: 10px; padding: 10px; border: 1px solid #559E9E; }}
+    
+    /* GỠ BỎ NỀN ĐEN KHUNG CHAT TỔNG */
+    div[data-testid="column"]:nth-of-type(3) div[data-testid="stVerticalBlockBorderWrapper"] {{ background-color: transparent !important; border: none !important; padding: 10px; }}
+    
+    /* CẬP NHẬT: SỬA LỖI MÀU CHỮ BỊ TÀNG HÌNH TRONG BONG BÓNG USER */
+    .chat-bubble.user {{ background-color: #123C46 !important; border-radius: 20px 20px 0px 20px; }}
+    .chat-bubble.user, .chat-bubble.user p, .chat-bubble.user span, .chat-bubble.user div, .chat-bubble.user b {{ color: #FFFFFF !important; }}
+    
+    .chat-bubble.bot {{ background-color: #FFFFFF !important; border: 1.5px solid #559E9E; border-radius: 20px 20px 20px 0px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }}
+    .chat-bubble.bot, .chat-bubble.bot p, .chat-bubble.bot span, .chat-bubble.bot div, .chat-bubble.bot b {{ color: #123C46 !important; }}
+    
+    /* XÓA BỎ LỚP NỀN TỐI MẶC ĐỊNH CỦA Ô NHẬP LIỆU CHAT INPUT VÀ ÉP MÀU TRẮNG TƯƠI */
+    div[data-testid="stChatInput"] > div {{ background-color: #FFFFFF !important; border: 2px solid #559E9E !important; border-radius: 15px !important; }}
+    div[data-testid="stChatInput"] div[data-baseweb="textarea"], div[data-testid="stChatInput"] div[data-baseweb="base-input"] {{ background-color: transparent !important; }}
+    div[data-testid="stChatInput"] textarea {{ background-color: transparent !important; color: #123C46 !important; -webkit-text-fill-color: #123C46 !important; caret-color: #D85A3F !important; font-weight: bold !important; font-size: 15px !important; }}
+    div[data-testid="stChatInput"] textarea::placeholder {{ color: #8BA8A8 !important; -webkit-text-fill-color: #8BA8A8 !important; font-weight: normal !important; }}
     """
 else:
     theme_css = f"""
@@ -109,16 +116,24 @@ else:
     [data-testid="stButton"] button p {{ color: #F1E3C8 !important; font-weight: bold !important; }}
     [data-testid="stButton"] button:hover, [data-testid="stButton"] button:focus, [data-testid="stButton"] button:active {{ background-color: #F1E3C8 !important; border-color: #F1E3C8 !important; }}
     [data-testid="stButton"] button:hover p, [data-testid="stButton"] button:focus p, [data-testid="stButton"] button:active p {{ color: #781414 !important; }}
-    div[data-testid="stButton"] > button[kind="primary"] {{ background-color: #E53935 !important; border-color: #E53935 !important; }}
-    div[data-testid="stButton"] > button[kind="primary"] p {{ color: #FFFFFF !important; }}
     .mockup-area {{ border: 3px solid #E53935; background-color: rgba(0, 0, 0, 0.2); }}
     .color-circle {{ border: 2px solid #F1E3C8; }}
-    div[data-testid="column"]:nth-of-type(3) div[data-testid="stVerticalBlockBorderWrapper"] {{ background-color: rgba(0, 0, 0, 0.2) !important; border-left: 2px solid rgba(241, 227, 200, 0.3) !important; border-radius: 15px; padding: 10px; }}
-    .product-card {{ border: 2px solid rgba(241, 227, 200, 0.2); background-color: rgba(74, 12, 12, 0.8); }}
-    .product-card.selected {{ border: 3px solid #4CAF50; background-color: rgba(76, 175, 80, 0.1); }}
-    .product-card.selected::after {{ color: #4CAF50; }}
-    .product-name {{ color: #F1E3C8 !important; }}
-    div[data-testid="stChatMessage"] {{ background-color: rgba(0,0,0,0.4); border-radius: 10px; padding: 10px; border: 1px solid #E53935; }}
+    
+    /* GỠ BỎ NỀN ĐEN KHUNG CHAT TỔNG */
+    div[data-testid="column"]:nth-of-type(3) div[data-testid="stVerticalBlockBorderWrapper"] {{ background-color: transparent !important; border: none !important; padding: 10px; }}
+    
+    /* CẬP NHẬT: SỬA LỖI MÀU CHỮ BỊ TÀNG HÌNH TRONG BONG BÓNG USER */
+    .chat-bubble.user {{ background-color: #E53935 !important; border-radius: 20px 20px 0px 20px; }}
+    .chat-bubble.user, .chat-bubble.user p, .chat-bubble.user span, .chat-bubble.user div, .chat-bubble.user b {{ color: #FFFFFF !important; }}
+    
+    .chat-bubble.bot {{ background-color: rgba(0,0,0,0.6) !important; border: 1px solid #E53935; border-radius: 20px 20px 20px 0px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }}
+    .chat-bubble.bot, .chat-bubble.bot p, .chat-bubble.bot span, .chat-bubble.bot div, .chat-bubble.bot b {{ color: #F1E3C8 !important; }}
+    
+    /* XÓA BỎ LỚP NỀN TỐI MẶC ĐỊNH CỦA Ô NHẬP LIỆU CHAT INPUT VÀ ÉP MÀU RIÊNG CHO DARK THEME */
+    div[data-testid="stChatInput"] > div {{ background-color: rgba(0,0,0,0.5) !important; border: 1.5px solid #E53935 !important; border-radius: 15px !important; }}
+    div[data-testid="stChatInput"] div[data-baseweb="textarea"], div[data-testid="stChatInput"] div[data-baseweb="base-input"] {{ background-color: transparent !important; }}
+    div[data-testid="stChatInput"] textarea {{ background-color: transparent !important; color: #F1E3C8 !important; -webkit-text-fill-color: #F1E3C8 !important; caret-color: #E53935 !important; font-weight: bold !important; font-size: 15px !important; }}
+    div[data-testid="stChatInput"] textarea::placeholder {{ color: #888888 !important; -webkit-text-fill-color: #888888 !important; font-weight: normal !important; }}
     """
 
 custom_css = f"""
@@ -139,8 +154,14 @@ custom_css = f"""
     .product-card img {{ width: 100%; height: 150px; object-fit: contain; border-radius: 5px; background-color: transparent; }}
     .product-name {{ margin-top: 10px; font-size: 14px; font-family: sans-serif; font-weight: bold !important; line-height: 1.3; }}
     
+    /* CSS BỐ CỤC CHAT ROW */
+    .chat-row {{ display: flex; width: 100%; margin-bottom: 15px; }}
+    .chat-row.user {{ justify-content: flex-end; padding-left: 15%; }}
+    .chat-row.bot {{ justify-content: flex-start; padding-right: 15%; }}
+    .chat-bubble {{ padding: 12px 18px; max-width: 100%; font-size: 15px; line-height: 1.5; font-family: sans-serif; }}
+    
     /* Làm đẹp thanh cuộn chat */
-    div[data-testid="stVerticalBlockBorderWrapper"] > div {{ overflow-y: auto; overflow-x: hidden; }}
+    div[data-testid="stVerticalBlockBorderWrapper"] > div {{ overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; padding-right: 5px; }}
     {theme_css}
 </style>
 """
@@ -236,21 +257,36 @@ with col_mockup:
     st.markdown(mockup_html, unsafe_allow_html=True)
 
 with col_chat:
-    # --- CẬP NHẬT: GIAO DIỆN CHAT UI CHUẨN ZALO/MESSENGER ---
-    with st.container(height=500):
-        st.markdown('<div class="elodie-title" style="margin-top:-10px;">Chatbot Tư Vấn</div>', unsafe_allow_html=True)
+    with st.container(height=500, border=False):
+        st.markdown('<div class="elodie-title" style="margin-top:-10px; margin-bottom:20px;">Chatbot Tư Vấn</div>', unsafe_allow_html=True)
         
-        # Phần khung hiển thị lịch sử chat
+        # --- HỆ THỐNG RENDER CHAT DẠNG HTML (ZALO/MESSENGER STYLE) ---
         chat_log = st.container(height=360, border=False)
         with chat_log:
+            chat_html = '<div style="display:flex; flex-direction:column; padding-bottom: 20px;">'
             for msg in st.session_state.messages:
-                with st.chat_message(msg["role"]):
-                    st.markdown(msg["content"])
+                role_class = "user" if msg["role"] == "user" else "bot"
+                
+                content_html = ""
+                if type(msg["content"]) is str:
+                    content_html = msg["content"].replace('\n', '<br>')
+                else:
+                    resp = msg["content"]
+                    if "loi" in resp:
+                        content_html = f'<span style="color: red;">{resp["loi"]}</span>'
+                    else:
+                        if resp.get("ten_trang_phuc"): content_html += f"<b>👗 Trang phục:</b> {resp['ten_trang_phuc']}<br><br>"
+                        if resp.get("loi_khuyen_stylist"): content_html += f"<b>💡 Lời khuyên:</b> {resp['loi_khuyen_stylist']}<br><br>"
+                        if resp.get("phoi_hien_dai"): content_html += f"<b>✨ Phối hiện đại:</b> {resp['phoi_hien_dai']}<br><br>"
+                        if resp.get("phoi_mau"): content_html += f"<b>🎨 Phối màu:</b> {resp['phoi_mau']}"
+                
+                chat_html += f'<div class="chat-row {role_class}"><div class="chat-bubble {role_class}">{content_html}</div></div>'
+            chat_html += '</div>'
+            st.markdown(chat_html, unsafe_allow_html=True)
         
-        # Phần ô nhập tin nhắn ghim cuối cùng (tự động nhận Enter để gửi)
-        if prompt := st.chat_input("Ví dụ: Mình là nữ, áo Tấc đỏ phối sao?"):
-            
-            # Ghi nhận bộ lọc từ khóa nếu có
+        # Ô nhập tin nhắn
+        if prompt := st.chat_input("Nhập tin nhắn cho AI..."):
+            # Lọc từ khóa
             q_lower = prompt.lower()
             if "nam" in q_lower.split():
                 st.session_state.user_gender = "Nam"
@@ -263,19 +299,19 @@ with col_chat:
                     st.session_state.user_color = v
                     break
 
-            # Cập nhật tin nhắn lên màn hình
+            # Lưu tin nhắn user và gọi AI
             st.session_state.messages.append({"role": "user", "content": prompt})
-            with chat_log:
-                with st.chat_message("user"):
-                    st.markdown(prompt)
-                
-                with st.chat_message("assistant"):
-                    with st.spinner("Stylist AI đang suy nghĩ..."):
-                        # Gọi hàm trò chuyện tự nhiên của AI (Không bóc tách JSON nữa)
-                        ai_response_str = gui_tin_nhan(st.session_state.chat_session, prompt)
-                        st.markdown(ai_response_str)
-                        st.session_state.messages.append({"role": "assistant", "content": ai_response_str})
             
+            with st.spinner("Stylist AI đang rep tin nhắn..."):
+                ai_response_str = gui_tin_nhan(st.session_state.chat_session, prompt)
+                try:
+                    ai_data = json.loads(ai_response_str)
+                    st.session_state.messages.append({"role": "assistant", "content": ai_data})
+                except json.JSONDecodeError:
+                    # Nếu AI trả lời chữ thuần (không phải JSON), lưu dạng chuỗi
+                    st.session_state.messages.append({"role": "assistant", "content": ai_response_str})
+            
+            # Khởi động lại trang để render HTML mới
             st.rerun()
 
 st.markdown("<hr style='border: 1px solid rgba(241, 227, 200, 0.15); margin: 10px 0 20px 0;'>", unsafe_allow_html=True)
