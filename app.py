@@ -244,7 +244,7 @@ with hero_col1:
     st.markdown('<div class="hero-line-1">Việt phục remix</div>', unsafe_allow_html=True)
     st.markdown('<div class="hero-line-2">Sáng tạo những set đồ riêng</div>', unsafe_allow_html=True)
     st.markdown('<p class="hero-desc">Khám phá sự giao thoa giữa truyền thống và hiện đại. Tự do sáng tạo, mix & match các trang phục truyền thống Việt Nam mang đậm phong cách cá nhân của bạn.</p>', unsafe_allow_html=True)
-    st.markdown('<a href="#chatbot-phoi-do" class="cta-button">Bắt đầu phối đồ</a>', unsafe_allow_html=True)
+    st.markdown('<a href="chatbot_phoi_do" target="_self" class="cta-button">Bắt đầu phối đồ</a>', unsafe_allow_html=True)
 
 with hero_col2:
     st.info("[Khu vực chèn ảnh minh họa chính: Nên dùng ảnh PNG không nền (transparent) có tone Đỏ, Vàng đồng, hoặc Xanh lục trầm để hài hòa với giao diện]")
@@ -285,7 +285,7 @@ for i, outfit in enumerate(outfits):
 <img src="{img_url}" alt="{name}">
 <div class="card-actions">
 <a href="#chi-tiet-{item_id}" target="_self" class="card-btn">Chi tiết</a>
-<a href="#chatbot-phoi-do" target="_self" class="card-btn">Phối đồ</a>
+<a href="chatbot_phoi_do" target="_self" class="card-btn">Phối đồ</a>
 </div>
 </div>
 <div class="outfit-name">{name}</div>
