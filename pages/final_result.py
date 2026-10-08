@@ -63,7 +63,9 @@ if st.session_state.theme == 'light':
     [data-testid="stButton"] button:hover p, [data-testid="stDownloadButton"] button:hover p {{ color: #FFFFFF !important; }}
     div[data-testid="stButton"] > button[kind="primary"] {{ background-color: #D85A3F !important; border-color: #D85A3F !important; }}
     div[data-testid="stButton"] > button[kind="primary"] p {{ color: #FFFFFF !important; }}
-    .content-box {{ background-color: #FFFFFF; color: #123C46 !important; border: 2px solid #559E9E; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }}
+    .content-box {{ background-color: #FFFFFF; color: #123C46 !important; border: 2px solid #559E9E; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); max-height: 380px; overflow-y: auto; }}
+    .content-box::-webkit-scrollbar {{ width: 6px; }}
+    .content-box::-webkit-scrollbar-thumb {{ background-color: #559E9E; border-radius: 10px; }}
     .highlight-text {{ color: #D85A3F; font-weight: bold; font-size: 1.1em; }}
     
     div[data-testid="stTextArea"] > div {{ background-color: #FFFFFF !important; border: 2px solid #559E9E !important; border-radius: 15px !important; }}
@@ -83,7 +85,9 @@ else:
     [data-testid="stButton"] button:hover p, [data-testid="stDownloadButton"] button:hover p {{ color: #781414 !important; }}
     div[data-testid="stButton"] > button[kind="primary"] {{ background-color: #6C854B !important; border-color: #6C854B !important; }}
     div[data-testid="stButton"] > button[kind="primary"] p {{ color: #FFFFFF !important; }}
-    .content-box {{ background-color: rgba(74, 12, 12, 0.8); color: #F1E3C8 !important; border: 2px solid rgba(241, 227, 200, 0.3); border-radius: 10px; padding: 25px; margin-bottom: 20px; }}
+    .content-box {{ background-color: rgba(74, 12, 12, 0.8); color: #F1E3C8 !important; border: 2px solid rgba(241, 227, 200, 0.3); border-radius: 10px; padding: 25px; margin-bottom: 20px; max-height: 380px; overflow-y: auto; }}
+    .content-box::-webkit-scrollbar {{ width: 6px; }}
+    .content-box::-webkit-scrollbar-thumb {{ background-color: rgba(241, 227, 200, 0.5); border-radius: 10px; }}
     .highlight-text {{ color: #6C854B; font-weight: bold; font-size: 1.1em; }}
     
     div[data-testid="stTextArea"] > div {{ background-color: rgba(0,0,0,0.5) !important; border: 1.5px solid #6C854B !important; border-radius: 15px !important; }}
@@ -108,7 +112,7 @@ custom_css = f"""
         justify-content: center !important; 
         align-items: center !important; 
         width: 100% !important; 
-        margin: 15px 0 35px 0 !important; 
+        margin: 5px 0 15px 0 !important; 
     }}
     div[data-testid="stFeedback"] > div, div[data-testid="stFeedback"] fieldset {{ 
         display: flex !important; 
@@ -244,7 +248,7 @@ with col2:
         if st.button("✏ Quay về chỉnh sửa", type="primary", use_container_width=True):
             st.switch_page("pages/chatbot_phoi_do.py")
             
-    st.markdown("<br><hr style='border-color: rgba(120,120,120,0.2);'><br>", unsafe_allow_html=True)
+    st.markdown("<hr style='border-color: rgba(120,120,120,0.2); margin: 15px 0;'>", unsafe_allow_html=True)
     
     st.markdown("<h3 class='elodie-title' style='text-align: center; font-size: 24px !important;'>Đánh giá trải nghiệm của bồ</h3>", unsafe_allow_html=True)
     
