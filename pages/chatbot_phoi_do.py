@@ -134,6 +134,120 @@ def load_json_data():
 
 mock_data, available_colors = load_json_data()
 
+def cham_diem_outfit(selected_items, user_color, current_step):
+    diem = 0
+    nhan_xet = []
+    goi_y_ai = []
+    thieu_sot = [] 
+    
+    # 1. Thu thập dữ liệu
+    top_item = selected_items.get('Trang phục') or selected_items.get('Áo')
+    has_top = bool(top_item)
+    has_bottom = bool(selected_items.get('Váy/Quần'))
+    has_shoes = bool(selected_items.get('Giày'))
+    has_acc = bool(selected_items.get('Nón') or selected_items.get('Túi xách') or selected_items.get('Phụ kiện'))
+    
+    colors_found = set()
+    danh_sach_mau = {"đỏ", "xanh", "vàng", "đen", "trắng", "nâu", "tím", "cam", "be", "xám", "hồng"}
+    # ĐIỀU CHỈNH: Trắng và Đen không bị tính vào giới hạn 3 màu
+    mau_bo_qua_dem = {"đen", "trắng"} 
+    
+    for key, value in selected_items.items():
+        if value:
+            items = value if isinstance(value, list) else [value]
+            for item in items:
+                chuoi_nhan_dien = f"{item.get('name', '')} {item.get('id', '')} {item.get('file_prefix', '')}".lower()
+                for c in danh_sach_mau:
+                    if c in chuoi_nhan_dien:
+                        colors_found.add(c)
+                        
+    if user_color:
+        colors_found.add(user_color.lower())
+
+    # ==========================================
+    # LOGIC CẢNH BÁO QUẦN CHO VIỆT PHỤC
+    # ==========================================
+    requires_bottom = False
+    if has_top:
+        ten_ao = top_item.get('name', '').lower()
+        # Các trang phục bắt buộc phải phối quần/váy bên dưới
+        if any(x in ten_ao for x in ['áo dài', 'bà ba', 'ngũ thân', 'tấc', 'nhật bình', 'giao lĩnh', 'viên lĩnh', 'đối khâm', 'tứ điên']):
+            requires_bottom = True
+
+    # 2. ĐIỀU KIỆN TIÊN QUYẾT (5 điểm cơ bản)
+    thoa_dieu_kien_co_ban = True
+    
+    if not has_top:
+        thoa_dieu_kien_co_ban = False
+        thieu_sot.append("- Thiếu Áo/Trang phục chính (Mất 5đ).")
+    
+    if requires_bottom and not has_bottom:
+        thoa_dieu_kien_co_ban = False
+        thieu_sot.append(f"- Lỗi trang phục: '{top_item.get('name')}' bắt buộc phải mặc kèm Váy/Quần (Mất 5đ).")
+        goi_y_ai.append("👉 Bồ đang mặc áo mà quên mặc quần/váy kìa! Chuyển sang tab [Váy/Quần] chọn ngay nhé.")
+        
+    if not has_shoes:
+        thoa_dieu_kien_co_ban = False
+        thieu_sot.append("- Thiếu Giày/Dép: Chưa chọn giày cho set đồ (Mất 5đ).")
+
+    if not thoa_dieu_kien_co_ban:
+        return 0, ["❌ Chưa đủ đồ cơ bản"], goi_y_ai, thieu_sot
+    else:
+        diem += 5
+        nhan_xet.append("✅ Mặc đủ trang phục, quần/váy và giày cơ bản (+5đ)")
+
+    # 3. ĐIỂM PHỤ KIỆN (2 điểm)
+    if has_acc:
+        diem += 2
+        nhan_xet.append("✅ Phụ kiện giúp set đồ hoàn thiện và có gu hơn (+2đ)")
+    else:
+        thieu_sot.append("- Thiếu điểm nhấn: Cần thêm ít nhất 1 Phụ kiện, Nón hoặc Túi xách (Mất 2đ).")
+
+    # ==========================================
+    # 4. ĐIỂM MÀU SẮC (2 điểm) - ĐÃ BỎ QUA TRẮNG/ĐEN
+    # ==========================================
+    mau_noi_bat = colors_found - mau_bo_qua_dem
+    color_harmony = False
+    
+    if len(mau_noi_bat) <= 1 and len(colors_found) >= 1:
+        color_harmony = True
+        nhan_xet.append("🎨 Tone-sur-tone: Màu sắc đồng nhất, cực kỳ tinh tế (+2đ)")
+    elif 1 < len(mau_noi_bat) <= 3:
+        color_harmony = True
+        nhan_xet.append(f"🎨 Wheel of Color: Mix {len(mau_noi_bat)} màu rực rỡ nhưng vẫn chuẩn quy tắc (+2đ)")
+    else:
+        thieu_sot.append(f"- Lỗi Tắc kè hoa: Set đồ có quá 3 màu nổi ({', '.join(mau_noi_bat)}), gây rối mắt (Mất 2đ).")
+        goi_y_ai.append("💡 Stylist khuyên: Hãy gỡ bớt các món đồ sặc sỡ, thay bằng màu Trắng hoặc Đen vì chúng không bị tính vào giới hạn 3 màu.")
+
+    if color_harmony: diem += 2
+
+    # Bonus khen ngợi nếu biết tận dụng Trắng/Đen làm nền
+    if mau_bo_qua_dem.intersection(colors_found) and color_harmony and len(mau_noi_bat) > 0:
+        nhan_xet.append("🌟 (Bonus) Safe Zone: Biết dùng Đen/Trắng làm nền rất thông minh!")
+
+    # 5. ĐIỂM HOÀN HẢO (1 điểm)
+    if diem == 9:
+        diem += 1
+        nhan_xet.append("🌟 10 ĐIỂM: Hoàn hảo! Tác phẩm không có điểm trừ.")
+    elif diem < 9:
+        thieu_sot.append("- Điểm thưởng Stylist: Phải đạt đủ các tiêu chí trên để lấy 1đ cuối cùng.")
+
+    # 6. GỢI Ý ĐỊNH HƯỚNG THEO NGỮ CẢNH
+    if has_top:
+        ten_ao = top_item.get('name', '').lower()
+        if current_step == 'Váy/Quần' and not has_bottom:
+            if 'bà ba' in ten_ao: goi_y_ai.append("💡 Stylist: Với Áo Bà Ba, chuẩn bài nhất là Quần lụa ống rộng (Đen/Trắng).")
+            elif 'tấc' in ten_ao or 'ngũ thân' in ten_ao: goi_y_ai.append("💡 Stylist: Cổ phục như Áo Tấc cực kỳ hợp với Quần tây ống suông hoặc Quần lụa thụng.")
+            elif 'tân thời' in ten_ao: goi_y_ai.append("💡 Stylist: Thử ngay Quần tây ống loe hoặc dập ly để tăng độ thướt tha nhé.")
+            else: goi_y_ai.append("💡 Stylist: An toàn nhất là chọn một chiếc quần ống rộng màu Trắng/Đen.")
+        elif current_step == 'Giày' and not has_shoes:
+            if 'bà ba' in ten_ao or 'tứ điên' in ten_ao: goi_y_ai.append("💡 Stylist: Đồ mộc mạc thế này đi Guốc mộc hoặc Dép đan là đẹp nhất.")
+            else: goi_y_ai.append("💡 Stylist: Muốn giữ dáng truyền thống thì chọn Hài, phá cách Remix thì chọn Sneaker chunky hoặc Loafer.")
+        elif current_step in ['Túi xách', 'Phụ kiện', 'Nón'] and not has_acc:
+            goi_y_ai.append("💡 Stylist: Bồ nhớ gắn thêm túi xách hoặc kính mát để set đồ ngầu hơn nha!")
+
+    return diem, nhan_xet, goi_y_ai, thieu_sot
+
 img_base64 = get_base64_of_bin_file('trongdong.jpg')
 font_base64 = get_base64_of_bin_file('fontChu.otf') 
 
@@ -317,6 +431,40 @@ with col_mockup:
                     mockup_html += f'<div class="white-box" style="font-size:11px; padding:4px 10px; background-color: rgba(255,255,255,0.85); border-radius: 15px;">✨ {v["name"]}</div>'
         mockup_html += '</div></div>'
     st.markdown(mockup_html, unsafe_allow_html=True)
+
+# ---> GỌI HÀM VÀ TRUYỀN VÀO current_step <---
+    diem_so, danh_sach_nhan_xet, goi_y_ai, thieu_sot = cham_diem_outfit(st.session_state.selected_items, st.session_state.user_color, current_step)
+
+    st.markdown("<hr style='border: 1px dashed #D85A3F;'>", unsafe_allow_html=True)
+    score_col, detail_col = st.columns([3, 4])
+
+    with score_col:
+        st.markdown('<div class="elodie-title" style="font-size: 20px !important;">Stylist Score</div>', unsafe_allow_html=True)
+        st.metric(label="Điểm hài hòa", value=f"{diem_so}/10")
+        
+        if diem_so == 10:
+            st.progress(diem_so / 10.0)
+            st.success("Tuyệt đỉnh! Tác phẩm không có điểm trừ.")
+        elif diem_so == 0:
+            st.error("Set đồ chưa hoàn chỉnh.")
+        else:
+            st.progress(diem_so / 10.0)
+            # HIỂN THỊ RÕ RÀNG SỐ ĐIỂM BỊ TRỪ
+            with st.expander("🚨 BẠN ĐANG MẤT ĐIỂM Ở ĐÂU?", expanded=True):
+                for loi in thieu_sot:
+                    st.markdown(f"<span style='color: #d32f2f; font-size: 13px;'>{loi}</span>", unsafe_allow_html=True)
+
+    with detail_col:
+        # Khung Đánh giá hiện tại
+        st.markdown("**🔍 Phân tích hiện tại:**")
+        for nx in danh_sach_nhan_xet:
+            st.markdown(f"<span style='font-size: 14px;'>{nx}</span>", unsafe_allow_html=True)
+            
+        # Khung AI Đề xuất THEO TỪNG BƯỚC
+        if goi_y_ai:
+            st.markdown("<br>**🤖 AI Gợi ý Item (Real-time):**", unsafe_allow_html=True)
+            for gy in goi_y_ai:
+                st.markdown(f"<span style='color: #123C46; font-size: 14px; font-weight: bold; background-color: #FCEBA7; padding: 2px 6px; border-radius: 5px;'>{gy}</span>", unsafe_allow_html=True)
 
 with col_chat:
     with st.container(height=500, border=False):
