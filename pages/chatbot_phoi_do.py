@@ -134,6 +134,17 @@ def load_json_data():
 
 mock_data, available_colors = load_json_data()
 
+
+def sync_color_filter():
+    """Cập nhật bộ lọc ngay trong callback của selectbox, tránh bị bật lại màu cũ."""
+    chosen_label = st.session_state.get("color_filter_selectbox", "Tất cả")
+    if chosen_label == "Tất cả":
+        st.session_state.active_color_filter = None
+    else:
+        st.session_state.active_color_filter = st.session_state.get(
+            "color_filter_label_to_code", {}
+        ).get(chosen_label)
+
 img_base64 = get_base64_of_bin_file('trongdong.jpg')
 font_base64 = get_base64_of_bin_file('fontChu.otf') 
 
@@ -161,6 +172,17 @@ if st.session_state.theme == 'light':
     
     div[data-testid="stTooltipContent"] {{ background-color: #F3EEE0 !important; border: 2px solid #D85A3F !important; border-radius: 8px; font-weight: bold; padding: 10px; }}
     div[data-testid="stTooltipContent"], div[data-testid="stTooltipContent"] * {{ color: #123C46 !important; font-weight: 600 !important; }}
+
+    /* --- ÉP BUỘC CSS SELECTBOX SÁNG --- */
+    div[data-baseweb="select"] > div {{ background-color: #F3EEE0 !important; border: 2px solid #D85A3F !important; border-radius: 8px !important; }}
+    div[data-baseweb="select"] span {{ color: #123C46 !important; font-weight: bold !important; }}
+    div[data-baseweb="select"] svg {{ fill: #123C46 !important; }}
+    
+    div[data-baseweb="popover"] > div, ul[role="listbox"], ul[role="listbox"] {{ background-color: #F3EEE0 !important; outline: none !important; border: 2px solid #D85A3F !important; border-radius: 8px !important; box-shadow: 0 8px 24px rgba(18,60,70,0.16) !important; }}
+    li[role="option"] {{ color: #123C46 !important; background-color: #F3EEE0 !important; font-weight: 600 !important; }}
+    li[role="option"] *, li[role="option"] div {{ color: #123C46 !important; }}
+    li[role="option"]:hover, li[role="option"][aria-selected="true"] {{ background-color: #F4D7C9 !important; color: #123C46 !important; }}
+    li[role="option"]:hover *, li[role="option"][aria-selected="true"] * {{ color: #123C46 !important; }}
     """
 else:
     theme_css = f"""
@@ -187,6 +209,17 @@ else:
     
     div[data-testid="stTooltipContent"] {{ background-color: rgba(120, 20, 20, 0.95) !important; border: 2px solid #F1E3C8 !important; border-radius: 8px; font-weight: bold; padding: 10px; }}
     div[data-testid="stTooltipContent"], div[data-testid="stTooltipContent"] * {{ color: #F1E3C8 !important; font-weight: 600 !important; }}
+
+    /* --- ÉP BUỘC CSS SELECTBOX TỐI --- */
+    div[data-baseweb="select"] > div {{ background-color: rgba(0,0,0,0.5) !important; border: 2px solid #F1E3C8 !important; border-radius: 8px !important; }}
+    div[data-baseweb="select"] span {{ color: #F1E3C8 !important; font-weight: bold !important; }}
+    div[data-baseweb="select"] svg {{ fill: #F1E3C8 !important; }}
+    
+    div[data-baseweb="popover"] > div, ul[role="listbox"] {{ background-color: #2B2020 !important; outline: none !important; border: 2px solid #F1E3C8 !important; border-radius: 8px !important; box-shadow: 0 8px 24px rgba(0,0,0,0.3) !important; }}
+    li[role="option"] {{ color: #F1E3C8 !important; background-color: #2B2020 !important; font-weight: 600 !important; }}
+    li[role="option"] *, li[role="option"] div {{ color: #F1E3C8 !important; }}
+    li[role="option"]:hover, li[role="option"][aria-selected="true"] {{ background-color: #6A3A32 !important; color: #FFFFFF !important; }}
+    li[role="option"]:hover *, li[role="option"][aria-selected="true"] * {{ color: #FFFFFF !important; }}
     """
 
 custom_css = f"""
@@ -201,21 +234,9 @@ custom_css = f"""
     [data-testid="stButton"] button:hover {{ transform: translateY(-2px); }}
     .mockup-area {{ border-radius: 20px; height: 500px; display: flex; flex-direction: column; position: relative; z-index: 2; overflow: hidden; }}
     
-    /* XÓA HOÀN TOÀN VIỀN VÀ KHÔNG GIAN THỪA CỦA NÚT MÀU BẰNG CÁCH BẮT CHÍNH XÁC MỎ NEO (MARKER) */
-    div[data-testid="columns"]:has(.color-filter-marker) div[data-testid="column"] div,
-    div[data-testid="stHorizontalBlock"]:has(.color-filter-marker) div[data-testid="column"] div {{ gap: 0rem !important; position: relative; }}
-    
-    div[data-testid="columns"]:has(.color-filter-marker) div[data-testid="stButton"] button,
-    div[data-testid="stHorizontalBlock"]:has(.color-filter-marker) div[data-testid="stButton"] button {{
-        opacity: 0 !important; position: absolute !important; top: -60px !important; left: 0 !important; width: 100% !important; height: 60px !important; z-index: 10; cursor: pointer; border: none !important; background: transparent !important; box-shadow: none !important; outline: none !important;
-    }}
-    
-    div[data-testid="columns"]:has(.color-filter-marker) div[data-testid="stButton"],
-    div[data-testid="stHorizontalBlock"]:has(.color-filter-marker) div[data-testid="stButton"] {{ height: 0px !important; margin: 0 !important; padding: 0 !important; border: none !important; background: transparent !important; min-height: 0px !important; }}
-    
     .product-card {{ border-radius: 10px; padding: 10px; text-align: center; position: relative; height: 230px; transition: all 0.2s; z-index: 2; margin-bottom: 15px; border: 2px solid rgba(120, 120, 120, 0.3); background-color: rgba(255,255,255,0.1); }}
-    .product-card.selected {{ border: 3px solid #4CAF50; background-color: rgba(76, 175, 80, 0.1); }}
-    .product-card.selected::after {{ content: '✔'; position: absolute; bottom: 5px; left: 10px; font-size: 20px; font-weight: bold; color: #4CAF50; }}
+    .product-card.selected {{ border: 3px solid #D85A3F; background-color: rgba(216, 90, 63, 0.10); }}
+    .product-card.selected::after {{ content: '✔'; position: absolute; bottom: 5px; left: 10px; font-size: 20px; font-weight: bold; color: #D85A3F; }}
     .product-card img {{ width: 100%; height: 150px; object-fit: contain; border-radius: 5px; background-color: transparent; }}
     .product-name {{ margin-top: 10px; font-size: 14px; font-family: sans-serif; font-weight: bold !important; line-height: 1.3; }}
     
@@ -235,7 +256,6 @@ top_left, top_mid, top_right, top_theme = st.columns([1.5, 6.5, 1, 1])
 with top_left:
     if st.button("Trang chủ", use_container_width=True): st.switch_page("app.py")
 with top_right:
-    # Kiểm tra xem người dùng đã chọn ít nhất một 'Trang phục', 'Áo' hoặc 'Váy/Quần' hay chưa
     chua_chon_trang_phuc = (
         st.session_state.selected_items['Trang phục'] is None and 
         st.session_state.selected_items['Áo'] is None and 
@@ -366,59 +386,6 @@ with col_chat:
             st.rerun()
 
 st.markdown("<hr style='border: 1px solid rgba(241, 227, 200, 0.15); margin: 20px 0 10px 0;'>", unsafe_allow_html=True)
-st.markdown('<div class="elodie-title" style="font-size: 22px !important; margin-bottom: 10px;">Lọc Màu Sắc:</div>', unsafe_allow_html=True)
-
-# BLOCK 3: Bảng lọc màu nằm ngang
-color_labels = {
-    "do": "Đỏ", "den": "Đen", "trang": "Trắng", "xanh": "Xanh", 
-    "vang": "Vàng", "nau": "Nâu", "tim": "Tím", "cam": "Cam", 
-    "be": "Be", "xam": "Xám", "xanh_com_nhat": "X. Nhạt", "xanh_co_vit": "Cổ vịt", "reu": "Rêu"
-}
-
-color_keys = list(available_colors.keys())
-num_color_cols = len(color_keys) + 1
-color_cols = st.columns(num_color_cols)
-
-# Tạo Marker tàng hình để CSS bắt trúng hàng chứa màu
-with color_cols[0]:
-    is_active = st.session_state.active_color_filter is None
-    border_col = "#123C46" if st.session_state.theme == 'light' else "#F1E3C8"
-    active_border = "#1E88E5" if is_active else border_col
-    scale = "scale(1.3)" if is_active else "scale(1)"
-    
-    # GỘP CHUNG MÀO ĐẦU VÀ GIAO DIỆN VÀO MỘT LỆNH ST.MARKDOWN
-    st.markdown(f'''
-    <div class="color-filter-marker" style="display:none;"></div>
-    <div style="position: relative; width: 100%; height: 50px; display: flex; flex-direction: column; align-items: center; margin-bottom: 5px;">
-        <div style="width:24px;height:24px;border-radius:50%;background:transparent;margin:0 auto;border:2.5px solid {active_border};box-shadow:0 1px 3px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; color:{active_border if is_active else border_col}; font-size:12px; font-weight:bold; transform: {scale}; transition: all 0.2s ease;">✖</div>
-        <div style="text-align:center;font-size:11px;font-weight:bold;margin-top:8px;color:{border_col}; pointer-events:none;">Tất cả</div>
-    </div>
-    ''', unsafe_allow_html=True)
-    if st.button(" ", key="btn_clear_color", use_container_width=True):
-        st.session_state.active_color_filter = None
-        st.rerun()
-
-for i, color_name in enumerate(color_keys):
-    hex_code = available_colors[color_name]
-    with color_cols[i+1]:
-        is_active = st.session_state.active_color_filter == color_name
-        border_col = "#123C46" if st.session_state.theme == 'light' else "#F1E3C8"
-        active_border = "#1E88E5" if is_active else border_col
-        scale = "scale(1.3)" if is_active else "scale(1)"
-        label = color_labels.get(color_name, "Màu")
-        
-        st.markdown(f'''
-        <div style="position: relative; width: 100%; height: 50px; display: flex; flex-direction: column; align-items: center; margin-bottom: 5px;">
-            <div style="width:24px;height:24px;border-radius:50%;background:{hex_code};margin:0 auto;border:2.5px solid {active_border};box-shadow:0 1px 3px rgba(0,0,0,0.3); transform: {scale}; transition: all 0.2s ease;"></div>
-            <div style="text-align:center;font-size:11px;font-weight:bold;margin-top:8px;color:{border_col}; pointer-events:none;">{label}</div>
-        </div>
-        ''', unsafe_allow_html=True)
-        
-        if st.button(" ", key=f"btn_{color_name}", use_container_width=True):
-            st.session_state.active_color_filter = color_name
-            st.rerun()
-
-st.markdown("<hr style='border: 1px solid rgba(241, 227, 200, 0.15); margin: 10px 0 20px 0;'>", unsafe_allow_html=True)
 
 # BLOCK 4: Nút Tabs điều hướng
 nav_col1, nav_col2, nav_col3 = st.columns([1.5, 7, 1.5])
@@ -447,26 +414,105 @@ with nav_col3:
         st.rerun()
 
 st.markdown("<br>", unsafe_allow_html=True)
-st.markdown(f'<div class="elodie-title">Chọn {current_step}</div>', unsafe_allow_html=True)
 
-# BLOCK 5: Thẻ hiển thị quần áo
+# BLOCK 5: Thẻ hiển thị quần áo & Hộp lọc màu cho từng Tab
 current_items = mock_data.get(current_step, [])
 
-filtered_items = []
+# Bước 1: Lọc item theo giới tính trước để đảm bảo danh sách chuẩn xác
+gender_filtered_items = []
 for item in current_items:
     keep = True
     if st.session_state.user_gender:
         gioi_tinh_list = item.get('gioi_tinh', [])
-        if gioi_tinh_list and st.session_state.user_gender not in gioi_tinh_list: keep = False
+        if gioi_tinh_list and st.session_state.user_gender not in gioi_tinh_list:
+            keep = False
+    if keep:
+        gender_filtered_items.append(item)
+
+# Bước 2: Chỉ thu thập những màu mà file ảnh tương ứng CÓ TỒN TẠI trong thư mục data
+available_colors_for_step = set()
+for item in gender_filtered_items:
+    if 'mau_sac' in item:
+        for c in item['mau_sac']:
+            if get_dynamic_image_path(item, st.session_state.user_gender, c):
+                available_colors_for_step.add(c)
+
+color_labels = {
+    "do": "Đỏ", "den": "Đen", "trang": "Trắng", "xanh": "Xanh", 
+    "vang": "Vàng", "nau": "Nâu", "tim": "Tím", "cam": "Cam", 
+    "be": "Be", "xam": "Xám", "xanh_com_nhat": "Xanh nhạt", "xanh_co_vit": "Xanh cổ vịt", "reu": "Rêu"
+}
+
+# Tiêu đề, bộ lọc màu và nút reset
+col_title, col_filter, col_reset = st.columns([6.2, 2.5, 1.3])
+
+with col_title:
+    st.markdown(f'<div class="elodie-title" style="margin-top:-5px;">Chọn {current_step}</div>', unsafe_allow_html=True)
+
+with col_filter:
+    color_options = ["Tất cả"] + sorted(
+        [color_labels.get(c, c) for c in available_colors_for_step if c in color_labels]
+    )
+    label_to_code = {
+        color_labels.get(c, c): c
+        for c in available_colors_for_step
+        if c in color_labels
+    }
+    st.session_state.color_filter_label_to_code = label_to_code
+
+    # Đồng bộ lựa chọn ban đầu; widget dùng key cố định để không bị nhảy về giá trị cũ.
+    active_label = color_labels.get(st.session_state.active_color_filter, "Tất cả")
+    if active_label not in color_options:
+        active_label = "Tất cả"
+        st.session_state.active_color_filter = None
+
+    if "color_filter_selectbox" not in st.session_state:
+        st.session_state.color_filter_selectbox = active_label
+    elif st.session_state.color_filter_selectbox not in color_options:
+        st.session_state.color_filter_selectbox = active_label
+
+    # Callback xử lý lựa chọn trước khi Streamlit chạy lại phần giao diện.
+    st.selectbox(
+        "Lọc màu",
+        options=color_options,
+        key="color_filter_selectbox",
+        on_change=sync_color_filter,
+        label_visibility="collapsed",
+    )
+
+with col_reset:
+    if st.button("↺ Reset", key="reset_all_outfits", use_container_width=True, help="Hủy chọn tất cả trang phục và phụ kiện"):
+        st.session_state.selected_items = {
+            "Trang phục": None,
+            "Áo": None,
+            "Váy/Quần": None,
+            "Nón": None,
+            "Túi xách": None,
+            "Phụ kiện": [],
+            "Giày": None,
+        }
+        st.rerun()
+
+# Lọc danh sách item cuối cùng để hiển thị (dựa trên danh sách đã lọc giới tính)
+filtered_items = []
+for item in gender_filtered_items:
+    keep = True
+    
+    if st.session_state.active_color_filter:
+        if st.session_state.active_color_filter not in item.get('mau_sac', []): 
+            keep = False
             
     if keep:
         img_path = get_dynamic_image_path(item, st.session_state.user_gender, st.session_state.user_color)
-        if not img_path: keep = False
+        if not img_path: 
+            keep = False
             
-    if keep: filtered_items.append(item)
+    if keep: 
+        filtered_items.append(item)
     
 current_items = filtered_items
 
+# Gom Váy và Quần nếu ở tab Váy/Quần
 if current_step == 'Váy/Quần':
     vay_list = []
     quan_list = []
@@ -483,7 +529,8 @@ for row_idx in range(0, len(current_items), NUM_COLS):
     
     for col_idx, item in enumerate(row_items):
         with cols[col_idx]:
-            if current_step == 'Phụ kiện': is_selected = any(i['id'] == item['id'] for i in st.session_state.selected_items['Phụ kiện'])
+            if current_step == 'Phụ kiện': 
+                is_selected = any(i['id'] == item['id'] for i in st.session_state.selected_items['Phụ kiện'])
             else:
                 is_selected = False
                 if st.session_state.selected_items[current_step] and st.session_state.selected_items[current_step]['id'] == item['id']:
