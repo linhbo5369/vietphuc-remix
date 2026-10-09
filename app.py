@@ -242,7 +242,7 @@ hero_col1, hero_col2 = st.columns([1.1, 1])
 
 with hero_col1:
     st.markdown('<div class="hero-line-1">Việt phục remix</div>', unsafe_allow_html=True)
-    st.markdown('<div class="hero-line-2">Sáng tạo những set đồ riêng</div>', unsafe_allow_html=True)
+    st.markdown('<div class="hero-line-2">Sáng tạo những set đồ độc bản</div>', unsafe_allow_html=True)
     st.markdown('<p class="hero-desc">Khám phá sự giao thoa giữa truyền thống và hiện đại. Tự do sáng tạo, mix & match các trang phục truyền thống Việt Nam mang đậm phong cách cá nhân của bạn.</p>', unsafe_allow_html=True)
     st.markdown('<a href="chatbot_phoi_do" target="_self" class="cta-button">Bắt đầu phối đồ</a>', unsafe_allow_html=True)
 
