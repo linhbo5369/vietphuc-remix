@@ -6,7 +6,7 @@ import sys
 
 # Thêm thư mục gốc vào đường dẫn hệ thống để Python tìm thấy file ai_handler.py
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from ai_handler import khoi_tao_chatbot, gui_tin_nhan
+from services.chatbot_service import khoi_tao_chatbot, gui_tin_nhan
 
 st.set_page_config(page_title="Chatbot phối đồ", layout="wide", initial_sidebar_state="collapsed")
 
