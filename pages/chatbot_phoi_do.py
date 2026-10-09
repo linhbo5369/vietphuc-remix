@@ -191,7 +191,7 @@ def cham_diem_outfit(selected_items, user_color, current_step):
         thieu_sot.append("- Thiếu Giày/Dép: Chưa chọn giày cho set đồ (Mất 5đ).")
 
     if not thoa_dieu_kien_co_ban:
-        return 0, ["❌ Chưa đủ đồ cơ bản"], goi_y_ai, thieu_sot
+        return 0, ["❌ Chưa đủ đồ cơ bản (trang phục, váy/quần, giày)"], goi_y_ai, thieu_sot
     else:
         diem += 5
         nhan_xet.append("✅ Mặc đủ trang phục, quần/váy và giày cơ bản (+5đ)")
@@ -206,10 +206,18 @@ def cham_diem_outfit(selected_items, user_color, current_step):
     # ==========================================
     # 4. ĐIỂM MÀU SẮC (2 điểm) - ĐÃ BỎ QUA TRẮNG/ĐEN
     # ==========================================
+    # ==========================================
+    # 4. ĐIỂM MÀU SẮC (2 điểm) - ĐÃ BỎ QUA TRẮNG/ĐEN
+    # ==========================================
     mau_noi_bat = colors_found - mau_bo_qua_dem
     color_harmony = False
     
-    if len(mau_noi_bat) <= 1 and len(colors_found) >= 1:
+    if len(colors_found) == 0:
+        # Trường hợp tên item không chứa từ khóa màu sắc (VD: "Áo Tấc", "Quần tây")
+        # Vẫn cho điểm hài hòa mặc định vì người dùng đang dùng màu trung tính/ẩn.
+        color_harmony = True
+        nhan_xet.append("🎨 Tone-sur-tone: Phối màu tự nhiên, nhã nhặn (+2đ)")
+    elif len(mau_noi_bat) <= 1 and len(colors_found) >= 1:
         color_harmony = True
         nhan_xet.append("🎨 Tone-sur-tone: Màu sắc đồng nhất, cực kỳ tinh tế (+2đ)")
     elif 1 < len(mau_noi_bat) <= 3:
